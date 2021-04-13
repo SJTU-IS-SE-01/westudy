@@ -1,8 +1,9 @@
-const mysql = require("mysql");
-const fs = require("fs");
-const path = require("path");
+const mysql = require('mysql');
+const fs = require('fs');
+const path = require('path');
+const readline = require('readline');
 
-const mysqlConfigPath = path.join(__dirname, "mysql.json");
+const mysqlConfigPath = path.join(__dirname, 'mysql.json');
 const mysqlConfig = JSON.parse(fs.readFileSync(mysqlConfigPath));
 
 const pool = mysql.createPool(mysqlConfig);
@@ -12,40 +13,40 @@ class Exit {
     // 是否已终止与数据库的连接
     this.exec = false;
 
-
     // windows 特判
-    if (process.platform === "win32") {
-      var rl = require("readline").createInterface({
+    if (process.platform === 'win32') {
+      const rl = readline.createInterface({
         input: process.stdin,
-        output: process.stdout
+        output: process.stdout,
       });
 
-      rl.on("SIGINT", function () {
-        process.emit("SIGINT");
+      rl.on('SIGINT', () => {
+        process.emit('SIGINT');
       });
     }
 
-    process.on("SIGINT", () => {
+    process.on('SIGINT', () => {
       this.end(() => {
         process.exit();
       });
     });
-    process.on("beforeExit", () => {
+    process.on('beforeExit', () => {
       this.end(() => {
         process.exit();
       });
     });
   }
+
   end(cb) {
     if (this.exex) return;
     pool.end(() => {
-      console.log("SIGINT: POOL END CONNECTION");
+      console.log('SIGINT: POOL END CONNECTION');
       this.exex = true;
-      if (typeof (cb) == "function") cb();
+      if (typeof (cb) === 'function') cb();
     });
   }
 }
 
-let exit = new Exit();
+const exit = new Exit();
 
 module.exports = pool;
