@@ -31,16 +31,11 @@ class Email {
   sendEmail() {
     const from = emailConfig.auth.user;
     const mailOptions = {
-      // 发件人地址
       from,
-      // 收件人列表, 向163邮箱, gmail邮箱, qq邮箱各发一封
       to: `${this.email}`,
       cc: from,
-      // 邮件主题
       subject: 'WeStudy 登陆验证码',
-      // 文字内容
       text: `Hi!\n This is following verification code：\n${this.code}`,
-
     };
 
     // 发送邮件
