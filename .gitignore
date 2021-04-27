@@ -108,3 +108,5 @@ dist
 
 # mysql config
 mysql.json
+
+.vs/
