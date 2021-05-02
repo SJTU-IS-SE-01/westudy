@@ -64,7 +64,7 @@ router.post('/students/quary', (req, res, next) => {
 
 // 增加一条座位预约
 router.post('/students/addappointment', (req, res, next) => {
-  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum) values("2021-04-09 21:00:00","2021-04-09 22:00:00","001") ', req.query, (error, results, fields) => {
+  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum) values(?,?,?) ', req.query.Btime,req.query.Etime,req.query.Snum, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
