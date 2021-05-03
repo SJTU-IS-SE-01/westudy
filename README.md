@@ -1,6 +1,6 @@
 # WeStudy
 
-[TOC]
+![westudy workflow](https://github.com/SJTU-IS-SE-01/westudy/actions/workflows/node.js.yml/badge.svg)
 
 ## 一、项目介绍 
 
@@ -30,17 +30,32 @@
 
 ## 二、项目构建方法
 
+### 构建
+
+```shell
+git clone https://github.com/SJTU-IS-SE-01/westudy.git
+cd westudy
+npm install
+npm start
+```
+
+### 测试（语法、代码风格检查）
+
+```shell
+npm test
+```
 
 
 ## 三、项目开发流程
 
+请发起`pull requsets`。
 
 
 ## 四、API文档
 
 ### 查询某时间段座位是否被占用
 
-url: api/seatcheck/:id/:Btime/:Etime
+url: /api/seatcheck/:id/:Btime/:Etime
 
 method: http get
 
@@ -52,35 +67,35 @@ method: http get
 
 返回正确JSON示例
 
-```javascript
+```json
 {
-  status: 0,
-  msg: '0',
-  results: 1,
+  "status": 0,
+  "msg": "0",
+  "results": 1,
 }
 ```
 
 返回错误JSON示例
 
-```javascript
+```json
 {
-   status: 1,
-   msg: '0',
-   results: 0,
-  }
+  "status": 1,
+  "msg": "0",
+  "results": 1,
+}
 ```
 
-```javascript
+```josn
 {
-   status: 1,
-   msg: 'Btime>Etime',
-   results: {},
- }
+  "status": 1,
+  "msg": "Btime>Etime",
+  "results": {},
+}
 ```
 
 ### 查询学生信息
 
-url: api/students/query
+url: /api/students/query
 
 method: http get
 
@@ -94,27 +109,27 @@ method: http get
 
 返回正确JSON示例
 
-```javascript
+```json
 { 
-    status: 0,
-    msg: 'ok',
-    results: {},
+  "status": 0,
+  "msg": "ok",
+  "results": {},
 }
 ```
 
 返回错误JSON示例
 
-```javascript
+```json
 {
-    status: 1,
-    msg: 'error',
-    results: {},
+  "status": 1,
+  "msg": "error",
+  "results": {},
  }
 ```
 
 ### 修改信誉分
 
-url: api/students/quary
+url: /api/students/quary
 
 method: http post
 
@@ -125,29 +140,29 @@ method: http post
 
 返回正确JSON示例
 
-```javascript
+```json
 { 
-    status: 0,
-    msg: 'ok',
-    results: {},
+  "status": 0,
+  "msg": "ok",
+  "results": {},
 }
 ```
 
 返回错误JSON示例
 
-```javascript
+```json
 {
-    status: 1,
-    msg: 'error',
-    results: {},
+  "status": 1,
+  "msg": "error",
+  "results": {},
 }
 ```
 
 ### 增加座位预约
 
-url:api/students/addappointment
+url: /api/students/addappointment
 
-method:http post
+method: http post
 
 | 参数名 | 类型     | 必填 | 说明     |
 | ------ | -------- | ---- | -------- |
@@ -157,25 +172,29 @@ method:http post
 
 返回正确JSON示例
 
-```javascript
+```json
 { 
 
-   status: 0,
-    msg: 'ok',
-    results: {},
+  "status": 0,
+  "msg": "ok",
+  "results": {},
 
 }
 ```
 
 返回错误JSON示例
 
-```javascript
-{   status: 1,    msg: 'error',    results: {},}
+```json
+{
+  "status": 1,
+  "msg": "error",
+  "results": {},
+}
 ```
 
 ### 查询座位预约信息
 
-url: api/students/seatsapt
+url: /api/students/seatsapt
 
 method: http get
 
@@ -188,24 +207,20 @@ method: http get
 
 返回正确JSON示例
 
-```javascript
+```json
 {  
-    status: 0,    
-    msg: 'ok'，
-    results: {},
+  "status": 0,    
+  "msg": "ok",
+  "results": {},
 }
 ```
 
 返回错误JSON示例
 
-```javascript
+```json
 {   
-    status: 1,
-    msg: 'error', 
-    results: {},
+  "status": 1,
+  "msg": "error", 
+  "results": {},
 }
 ```
-
-
-
-![westudy workflow](https://github.com/SJTU-IS-SE-01/westudy/actions/workflows/node.js.yml/badge.svg)
