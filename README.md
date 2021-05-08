@@ -224,3 +224,65 @@ method: http get
   "results": {},
 }
 ```
+
+
+### 登陆（获取验证码）
+
+url: /api/login/code
+
+method: http post
+
+| 参数  | 类型     | 必填 | 说明     |
+| ----- | -------- | ---- | -------- |
+| email | varchar | 是   | 邮箱 |
+
+返回正确JSON示例
+
+```json
+{  
+  "status": 0,    
+  "msg": "ok",
+  "results": {},
+}
+```
+
+返回错误JSON示例
+
+```json
+{   
+  "status": 1,
+  "msg": "error", 
+  "results": {},
+}
+```
+
+### 登陆
+
+url: /api/login
+
+method: http post
+
+| 参数  | 类型     | 必填 | 说明     |
+| ----- | -------- | ---- | -------- |
+| email | varchar | 是   | 邮箱 |
+| code | varchar | 是   | 验证码 |
+
+返回正确JSON示例
+
+```json
+{  
+  "status": 0,    
+  "msg": "ok",
+  "results": {},
+}
+```
+
+返回错误JSON示例
+
+```json
+{   
+  "status": 1,
+  "msg": "err", 
+  "results": "code is not correct.",
+}
+```
