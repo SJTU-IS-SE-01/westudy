@@ -26,4 +26,3 @@ describe('TEST API', () => {
     pool.exitHelper.end(done);
   });
 });
-
