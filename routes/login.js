@@ -25,7 +25,7 @@ function generateCode() {
 class Email {
   constructor(email) {
     this.email = email;
-    this.code = this.generateCode();
+    this.code = generateCode();
   }
 
   sendEmail() {
@@ -53,6 +53,7 @@ class Email {
 router.post('/code', (req, res, next) => {
   const email = new Email(req.body.email);
   Email[email.email] = email;
+  console.log(email.code);
   email.sendEmail();
   res.json({
     status: 0,
@@ -67,7 +68,6 @@ router.post('/code', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const { email } = req.body;
   const { code } = req.body;
-  console.log(email, code);
   if (!Email[email] || !Email[email].code || Email[email].code.toString() !== code) {
     res.json({
       status: 1,
@@ -79,6 +79,22 @@ router.post('/signup', (req, res, next) => {
     res.json({
       status: 0,
       msg: 'ok',
+      results: {},
+    });
+  }
+});
+
+router.get('/getEmail', (req, res, next) => {
+  if ('email' in req.session && req.session.email) {
+    res.json({
+      status: 0,
+      msg: 'ok',
+      results: { email: req.session.email },
+    });
+  } else {
+    res.json({
+      status: 1,
+      msg: 'err',
       results: {},
     });
   }
