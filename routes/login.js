@@ -13,19 +13,19 @@ const axios = require('axios');
 
 const Emails = {};
 
+// 生成[minNum, maxNum]之间的验证码
+function randomNum(minNum, maxNum) {
+  return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+}
+
+function generateCode() {
+  return randomNum(100000, 999999);
+}
+
 class Email {
   constructor(email) {
     this.email = email;
     this.code = this.generateCode();
-  }
-
-  // 生成[minNum, maxNum]之间的验证码
-  static randomNum(minNum, maxNum) {
-    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-  }
-
-  generateCode() {
-    return this.randomNum(100000, 999999);
   }
 
   sendEmail() {
@@ -50,7 +50,7 @@ class Email {
 // 生成邮箱验证码
 // 需要参数
 // email
-router.post('/login/code', (req, res, next) => {
+router.post('/code', (req, res, next) => {
   const email = new Email(req.body.email);
   Email[email.email] = email;
   email.sendEmail();
@@ -64,22 +64,23 @@ router.post('/login/code', (req, res, next) => {
 // 登陆验证
 // 需要参数
 // 邮箱 验证码
-router.post('/login', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const { email } = req.body;
   const { code } = req.body;
-  if (!Email[email] || !Email[email].code || Email[email].code !== code) {
+  console.log(email, code);
+  if (!Email[email] || !Email[email].code || Email[email].code.toString() !== code) {
     res.json({
       status: 1,
       msg: 'err',
       results: 'code is not correct.',
     });
   } else {
+    req.session.email = email;
     res.json({
       status: 0,
       msg: 'ok',
       results: {},
     });
-    req.session.email = email;
   }
 });
 
