@@ -224,6 +224,46 @@ method: http get
   "results": {},
 }
 ```
+##### 查询某个楼层区域的座位信息
+
+url:api/seats/query
+
+method:http get
+
+| 参数    | 类型    | 必填 | 说明 |
+| ------- | ------- | ---- | ---- |
+| Subject | varchar | 是   | 学科 |
+| Snum    | char    | 是   | 编号 |
+| Area    | char    | 是   | 区域 |
+| Floor   | char    | 是   | 楼层 |
+
+返回正确JSON示例
+
+```javascript
+{ 
+
+   status: 0,
+    msg: 'ok',
+    results: {},
+
+
+}
+```
+
+返回错误JSON示例
+
+```javascript
+{
+
+   status: 1,
+    msg: 'error',
+    results: {},
+
+}
+
+
+```
+
 
 
 ### 登陆（获取验证码）
