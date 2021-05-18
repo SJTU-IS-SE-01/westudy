@@ -39,10 +39,17 @@ npm install
 npm start
 ```
 
-### 测试（语法、代码风格检查）
-
+### 测试
 ```shell
 npm test
+```
+- 语法、代码风格检查
+```shell
+npm run test-syntax
+```
+- 后端API测试
+```shell
+npm run test-backend
 ```
 
 
@@ -178,7 +185,6 @@ method: http post
   "status": 0,
   "msg": "ok",
   "results": {},
-
 }
 ```
 
