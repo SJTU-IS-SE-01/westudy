@@ -71,7 +71,6 @@ describe('TEST API', () => {
         return done();
       });
   });
-
   after((done) => {
     pool.exitHelper.end(done);
   });
