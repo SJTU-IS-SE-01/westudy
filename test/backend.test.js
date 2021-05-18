@@ -5,6 +5,8 @@ const app = require('../app');
 const request = supertest(app);
 const pool = require('../routes/mysql');
 
+// npm run test-backend
+
 describe('TEST API', () => {
   // 查询学生信息
   it('/students/query', (done) => {
@@ -24,9 +26,9 @@ describe('TEST API', () => {
   });
 
   // 查询座位预约信息
-  it('/students/query', (done) => {
+  it('/students/seatsapt', (done) => {
     request
-      .get('/api/students/seatsapt?Snum=01301')
+      .get('/api/students/seatsapt?Snum=001')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -38,7 +40,7 @@ describe('TEST API', () => {
   });
 
   // 查询座位信息
-  it('/students/query', (done) => {
+  it('/seats/query', (done) => {
     request
       .get('/api/seats/query?Snum=01301')
       .expect('Content-Type', /json/)
@@ -51,6 +53,21 @@ describe('TEST API', () => {
         assert.strictEqual(res.body.results[0].Snum, '01301');
         assert.strictEqual(res.body.results[0].Area, 'A');
         assert.strictEqual(res.body.results[0].Floor, '3');
+        return done();
+      });
+  });
+
+  // 查询某时间段座位是否被占用
+  it('/seatcheck/:id/:Btime/:Etime', (done) => {
+    request
+      .get('/api/seatcheck/001/2021-04-09 20:59:30/2021-04-10 20:59:30')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.strictEqual(res.body.status, 0);
+        assert.strictEqual(res.body.msg, 'ok');
+        assert.strictEqual(res.body.results, 1);
         return done();
       });
   });
