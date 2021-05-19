@@ -31,11 +31,18 @@
 ## 二、项目构建方法
 
 ### 构建
-
 ```shell
 git clone https://github.com/SJTU-IS-SE-01/westudy.git
 cd westudy
 npm install
+```
+
+在`routes`文件下添加数据库服务器和邮箱服务器的配置文件，`mysql.json`和`email.json`。
+
+如果您不清楚，请联系开发者。
+
+### 运行
+```shell
 npm start
 ```
 
