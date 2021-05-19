@@ -1,6 +1,6 @@
 # WeStudy
 
-![westudy workflow](https://github.com/SJTU-IS-SE-01/westudy/actions/workflows/node.js.yml/badge.svg)
+[![Node.js CI](https://github.com/SJTU-IS-SE-01/westudy/actions/workflows/node.js.yml/badge.svg)](https://github.com/SJTU-IS-SE-01/westudy/actions/workflows/node.js.yml)
 
 ## 一、项目介绍 
 
