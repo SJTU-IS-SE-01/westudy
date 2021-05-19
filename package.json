@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "develop": "cross-env NODE_ENV=develop node ./bin/www",
     "fix": "eslint --fix --ext .js,.ts .",
     "test-syntax": "eslint . --ext .js,.ts",
     "test-backend": "mocha",
@@ -20,6 +21,7 @@
     "nodemailer": "^6.5.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
