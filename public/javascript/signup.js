@@ -1,4 +1,4 @@
-const { $ } = window;
+const { $, toastr } = window;
 
 function checkValid() {
   if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test($('#inputEmail').val())) {
@@ -28,6 +28,9 @@ $(document).ready(() => {
     }, (data) => {
       if (data.status === 0) {
         window.location.href = '/';
+      } else {
+        toastr.options.positionClass = 'toast-top-center';
+        toastr.error(data.results);
       }
     });
   });

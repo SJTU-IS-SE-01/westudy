@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport(emailConfig);
 const router = express.Router();
 
 const axios = require('axios');
+const pool = require('./mysql');
 
 const Emails = {};
 
@@ -69,8 +70,9 @@ router.post('/code', (req, res, next) => {
 // 需要参数
 // 邮箱 验证码
 router.post('/signup', (req, res, next) => {
-  const { email } = req.body;
-  const { code } = req.body;
+  const {
+    email, code, Id, Name, Major,
+  } = req.body;
   if (!Email[email] || !Email[email].code || Email[email].code.toString() !== code) {
     res.json({
       status: 1,
@@ -78,11 +80,29 @@ router.post('/signup', (req, res, next) => {
       results: 'code is not correct.',
     });
   } else {
-    req.session.email = email;
-    res.json({
-      status: 0,
-      msg: 'ok',
-      results: {},
+    pool.query('SELECT * from Student where Id=?', Id, (error, results, fields) => {
+      if (error) {
+        res.json({
+          status: 1,
+          msg: 'err',
+          results: error,
+        });
+        return;
+      }
+      if (results.length > 0) {
+        res.json({
+          status: 1,
+          msg: 'err',
+          results: '该用户已被注册',
+        });
+        return;
+      }
+      req.session.email = email;
+      res.json({
+        status: 0,
+        msg: 'ok',
+        results: {},
+      });
     });
   }
 });
