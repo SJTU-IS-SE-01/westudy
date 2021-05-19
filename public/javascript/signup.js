@@ -11,10 +11,9 @@ function checkValid() {
 $(document).ready(() => {
   $('#get-code').click(() => {
     if (!checkValid()) return;
-    // console.log("je")
-    $.post('/code', { email: $('#inputEmail').val() }, (data) => {
+    $.post('/users/code', { email: $('#inputEmail').val() }, (data) => {
       console.log(data);
-      alert('发送成功');
+      // alert('发送成功');
     });
   });
   $('#signup').click((e) => {
@@ -24,7 +23,7 @@ $(document).ready(() => {
     const Id = $('#inputSno').val();
     const Name = $('#inputName').val();
     const Major = $('#inputSdept').val();
-    $.post('/signup', {
+    $.post('/users/signup', {
       email, code, Id, Name, Major,
     }, (data) => {
       if (data.status === 0) {
