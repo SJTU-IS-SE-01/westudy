@@ -135,7 +135,7 @@ router.post('/login', (req, res, next) => {
         });
         return;
       }
-      if (results.length == 0) {
+      if (results.length === 0) {
         res.json({
           status: 1,
           msg: 'err',
