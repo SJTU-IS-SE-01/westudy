@@ -21,7 +21,7 @@ $(document).ready(() => {
     const email = $('#inputEmail').val();
     const code = $('#inputCode').val();
     $.post('/users/login', {
-      email, code
+      email, code,
     }, (data) => {
       if (data.status === 0) {
         window.location.href = '/';
