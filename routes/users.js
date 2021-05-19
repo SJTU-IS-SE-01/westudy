@@ -54,7 +54,7 @@ class Email {
 router.post('/code', (req, res, next) => {
   const email = new Email(req.body.email);
   Email[email.email] = email;
-  if (process.env.NODE_ENV === 'producion') {
+  if (process.env.NODE_ENV === 'production') {
     email.sendEmail();
   } else {
     console.log(`Email: ${email.email} Code: ${email.code}`);
@@ -103,6 +103,11 @@ router.post('/signup', (req, res, next) => {
         msg: 'ok',
         results: {},
       });
+      // 插入该用户
+      pool.query(`
+        insert into Student(Id, Name, Major, Credit, Email, Password)
+          values (?, ?, ?, 100, ?, "123456")`,
+      [Id, Name, Major, email]);
     });
   }
 });
