@@ -66,9 +66,9 @@ router.post('/code', (req, res, next) => {
   });
 });
 
-// 登陆验证
+// 注册
 // 需要参数
-// 邮箱 验证码
+// 邮箱 验证码 姓名 专业 等
 router.post('/signup', (req, res, next) => {
   const {
     email, code, Id, Name, Major,
@@ -108,6 +108,47 @@ router.post('/signup', (req, res, next) => {
         insert into Student(Id, Name, Major, Credit, Email, Password)
           values (?, ?, ?, 100, ?, "123456")`,
       [Id, Name, Major, email]);
+    });
+  }
+});
+
+// 登录
+// 需要参数
+// 邮箱 验证码
+router.post('/login', (req, res, next) => {
+  const {
+    email, code,
+  } = req.body;
+  if (!Email[email] || !Email[email].code || Email[email].code.toString() !== code) {
+    res.json({
+      status: 1,
+      msg: 'err',
+      results: 'code is not correct.',
+    });
+  } else {
+    pool.query('SELECT * from Student where Email=?', email, (error, results, fields) => {
+      if (error) {
+        res.json({
+          status: 1,
+          msg: 'err',
+          results: error,
+        });
+        return;
+      }
+      if (results.length == 0) {
+        res.json({
+          status: 1,
+          msg: 'err',
+          results: '该用户未注册',
+        });
+        return;
+      }
+      req.session.email = email;
+      res.json({
+        status: 0,
+        msg: 'ok',
+        results: {},
+      });
     });
   }
 });
