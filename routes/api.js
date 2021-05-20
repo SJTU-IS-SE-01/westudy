@@ -4,6 +4,18 @@ const pool = require('./mysql');
 
 const router = express.Router();
 
+// 登录拦截
+router.use((req, res, next) => {
+  if (req.session.email) next();
+  else {
+    res.json({
+      status: 1,
+      msg: 'err',
+      results: 'has not been logined',
+    });
+  }
+});
+
 function handleSQLResult(error, results, fields) {
   const json = {
     status: 0,
