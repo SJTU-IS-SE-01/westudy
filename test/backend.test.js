@@ -71,6 +71,21 @@ describe('TEST API', () => {
         return done();
       });
   });
+
+  // 修改信誉积分
+  it('/students/quary', (done) => {
+    request
+      .post('/api/students/quary?Id=519021911114')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.strictEqual(res.body.status, 0);
+        assert.strictEqual(res.body.msg, 'ok');
+        return done();
+      });
+  });
+
   after((done) => {
     pool.exitHelper.end(done);
   });
