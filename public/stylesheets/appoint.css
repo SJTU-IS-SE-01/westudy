@@ -31,7 +31,7 @@ div.content>div.AseFeeds>div.options {
 div.content>div.AseFeeds>div.workplace {
   margin: auto;
   width: 500px;
-  height: 400px;
+  max-height: 200px;
   background-color: #dddddd;
   border: 2px;
   border-radius: 30px;
