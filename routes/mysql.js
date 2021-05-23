@@ -49,4 +49,5 @@ class Exit {
 
 const exit = new Exit();
 
+pool.exitHelper = exit;
 module.exports = pool;

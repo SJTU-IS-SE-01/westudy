@@ -109,4 +109,8 @@ dist
 # mysql config
 mysql.json
 
+# email config
+email.json
+
+# others
 .vs/

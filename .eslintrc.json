@@ -3,7 +3,8 @@
         "browser": true,
         "commonjs": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "extends": [
         "airbnb-base"
@@ -14,6 +15,7 @@
     "rules": {
         "no-unused-vars": "off",
         "no-var": "warn",
-        "no-console": "off"
+        "no-console": "off",
+        "class-methods-use-this": "warn"
     }
 }
