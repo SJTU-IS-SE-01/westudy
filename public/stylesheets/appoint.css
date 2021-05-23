@@ -1,39 +1,39 @@
 div.content {
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin: auto;
-    width: 600px;
-    padding: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: auto;
+  width: 600px;
+  padding: 25px;
 }
 
 div.content>ul>il {
-    font-size: 18px;
-    color: #000000;
-    line-height: 24px;
-    text-align: center;
-    padding: 0 25px;
+  font-size: 18px;
+  color: #000000;
+  line-height: 24px;
+  text-align: center;
+  padding: 0 25px;
 }
 
 div.content>ul>il.active {
-    color: #288ae2;
-    border-bottom: 04px solid #288ae2
+  color: #288ae2;
+  border-bottom: 04px solid #288ae2
 }
 
 div.content>div.AseFeeds {
-    padding: 30px;
+  padding: 30px;
 }
 
 div.content>div.AseFeeds>div.options {
-    padding: 0 25px 10px;
-    height: 120px;
+  padding: 0 25px 10px;
+  height: 120px;
 }
 
 div.content>div.AseFeeds>div.workplace {
-    margin: auto;
-    width: 500px;
-    height: 400px;
-    background-color: #dddddd;
-    border: 2px;
-    border-radius: 30px;
-    padding: 25px;
+  margin: auto;
+  width: 500px;
+  height: 400px;
+  background-color: #dddddd;
+  border: 2px;
+  border-radius: 30px;
+  padding: 25px;
 }
