@@ -86,6 +86,19 @@ describe('TEST API', () => {
       });
   });
 
+  // 增加座位预约
+  it('/students/addappointment', (done) => {
+    request
+      .post('/api/students/addappointment?Btime=2021-04-20%2021:00:00&Etime=2021-04-20%2022:00:00&Snum=01401&Id=519021910614')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        assert.strictEqual(res.body.status, 0);
+        assert.strictEqual(res.body.msg, 'ok');
+        return done();
+      });
+  });
   after((done) => {
     pool.exitHelper.end(done);
   });
