@@ -13,7 +13,7 @@ $(document).ready(() => {
     if (!checkValid()) return;
     $.post('/users/code', { email: $('#inputEmail').val() }, (data) => {
       console.log(data);
-      // alert('发送成功');
+      alert('发送成功');
     });
   });
   $('#signup').click((e) => {
