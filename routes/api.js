@@ -64,7 +64,7 @@ router.post('/students/quary', (req, res, next) => {
 
 // 增加一条座位预约
 router.post('/students/addappointment', (req, res, next) => {
-  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum,Id) values(?,?,?,?) ',[req.query.Btime,req.query.Etime,req.query.Snum,req.query.Id],(error, results, fields) => {
+  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum,Id) values(?,?,?,?) ', [req.query.Btime, req.query.Etime, req.query.Snum, req.query.Id], (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
@@ -76,7 +76,7 @@ router.get('/students/seatsapt', (req, res, next) => {
   });
 });
 
-//查询某段时间内空闲的座位编号
+// 查询某段时间内空闲的座位编号
 router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
   if (req.params.Etime < req.params.Btime) {
     res.json({
