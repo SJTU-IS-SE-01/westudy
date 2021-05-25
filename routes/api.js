@@ -92,4 +92,37 @@ router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
   }
 });
 
+// 一些特殊功能的api
+router.get('/timechack/:student/:Eapt', (req, res, next) => {
+  if (req.params.Etime < req.params.Btime) {
+    res.json({
+      status: 1,
+      msg: 'Btime>Etime',
+      results: {},
+    });
+  } else {
+    pool.query('SELECT Snum FROM Seat WHERE Snum NOT IN (SELECT Snum FROM SeatStatus WHERE  unix_timestamp(Btime)<=unix_timestamp(?) AND unix_timestamp(Etime)>=unix_timestamp(?))  ', 
+    [req.params.Etime, req.params.Btime], (error, results, fields) => {
+      const json = handleSQLResult(error, results, fields);
+      res.json(json);
+    });
+  }
+});
+
+// 预约再测试
+router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
+  if (req.params.Etime < req.params.Btime) {
+    res.json({
+      status: 1,
+      msg: 'Btime>Etime',
+      results: {},
+    });
+  } else {
+    pool.query('SELECT Snum FROM Seat  ', [req.params.Etime, req.params.Btime], (error, results, fields) => {
+      const json = handleSQLResult(error, results, fields);
+      res.json(json);
+    });
+  }
+});
+
 module.exports = router;
