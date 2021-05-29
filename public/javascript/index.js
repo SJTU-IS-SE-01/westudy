@@ -1,6 +1,6 @@
-const { $ } = window;
 class Header {
   build() {
+    const { $ } = window;
     const header = $('#header');
     if (header.length === 0) return;
     $.get('/header.html', (data) => {
@@ -11,6 +11,7 @@ class Header {
   }
 
   update() {
+    const { $ } = window;
     $('#login').click((e) => {
       e.preventDefault();
       window.location.href = '/login.html';
@@ -30,7 +31,7 @@ class Header {
   }
 }
 
-$(document).ready(() => {
+window.$(document).ready(() => {
   const header = new Header();
   header.build();
 });
