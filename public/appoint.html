@@ -17,41 +17,43 @@
     <div class="content">
         <h1 style="margin: 10px;"><b>预 约 中 心</b></h1>
         <div class="options">
-            <b>预约时段:</b> 从
-            <select>
-                <option>8:00</option>
-                <option>9:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-                <option>13:00</option>
-                <option>14:00</option>
-                <option>15:00</option>
-                <option>16:00</option>
-                <option>17:00</option>
-                <option>18:00</option>
-                <option>19:00</option>
-                <option>20:00</option>
-                <option>21:00</option>
-            </select>到
-            <select>
-                <option>9:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-                <option>13:00</option>
-                <option>14:00</option>
-                <option>15:00</option>
-                <option>16:00</option>
-                <option>17:00</option>
-                <option>18:00</option>
-                <option>19:00</option>
-                <option>20:00</option>
-                <option>21:00</option>
-                <option>22:00</option>
+            <b>预约时段:</b>从
+            <select id="begin">
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+            </select>:00 到
+            <select id="end">
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+            </select>:00<br/>
+            座位号：<select id="Snumber" style="margin:10px;">
+            <option value="0">请先查询区域座位预约信息</option>
             </select>
-            座位号：<input id="Snumber" style="width: 100px;margin:0px 20px;"></input>
-            <button>预约</button>
+            <button id="button-post">预约</button>
         </div>
         <div class="workplace">
             <b>查询区域:</b>
