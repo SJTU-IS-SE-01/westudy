@@ -25,7 +25,7 @@ class Header {
       if (data.status === 0) {
         $('#login').hide();
         $('#signup').hide();
-        $('#users-email').text(data.results.email);
+        $('#users-email').html(`欢迎您，<a href="/personal.html">${data.results.email}</a>`);
       }
     });
   }
