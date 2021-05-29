@@ -35,8 +35,8 @@ class Email {
       from,
       to: `${this.email}`,
       cc: from,
-      subject: 'WeStudy 登陆验证码',
-      text: `Hi!\n This is following verification code：\n${this.code}`,
+      subject: 'WeStudy 账户验证码',
+      text: `Hi! Thanks for using WeStudy\n This is following verification code：\n${this.code}`,
     };
 
     // 发送邮件
