@@ -15,13 +15,13 @@ body {
   /* border-radius: 20%; */
 }
 
-.content {
-  opacity: 0.9;
-}
-
-.form-control {
+.content .form-control {
   width: auto !important;
   display: inline !important;
   margin-left: 5px !important;
   margin-right: 5px !important;
+}
+
+.il-link {
+  cursor: pointer;
 }
