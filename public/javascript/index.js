@@ -1,6 +1,6 @@
-const { $ } = window;
 class Header {
   build() {
+    const { $ } = window;
     const header = $('#header');
     if (header.length === 0) return;
     $.get('/header.html', (data) => {
@@ -11,6 +11,7 @@ class Header {
   }
 
   update() {
+    const { $ } = window;
     $('#login').click((e) => {
       e.preventDefault();
       window.location.href = '/login.html';
@@ -24,13 +25,13 @@ class Header {
       if (data.status === 0) {
         $('#login').hide();
         $('#signup').hide();
-        $('#users-email').text(data.results.email);
+        $('#users-email').html(`欢迎您，<a href="/personal.html">${data.results.email}</a>`);
       }
     });
   }
 }
 
-$(document).ready(() => {
+window.$(document).ready(() => {
   const header = new Header();
   header.build();
 });

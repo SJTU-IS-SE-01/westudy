@@ -1,78 +1,101 @@
 <html>
 
 <head>
-    <link rel='dns-prefetch' href='./index.html' />
-    <title>Appoint_WeStudy</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./stylesheets/appoint.css">
-    <link rel="stylesheet" href="./stylesheets/style.css">
-    <link rel="icon" href="./icon.ico" />
-
+  <link rel='dns-prefetch' href='./index.html' />
+  <title>WeStudy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="./stylesheets/appoint.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <link rel="icon" href="./icon.ico" />
+  <script src="./javascript/appoint.js"></script>
 </head>
 
 <body>
-    <div id="header"></div>
-    <br /><br />
-    <div class="content">
-        <h1 style="margin: 10px;"><b>预 约 中 心</b></h1>
-        <div class="options">
-            <b>预约时段:</b> 从
-            <select>
-                <option>8:00</option>
-                <option>9:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-                <option>13:00</option>
-                <option>14:00</option>
-                <option>15:00</option>
-                <option>16:00</option>
-                <option>17:00</option>
-                <option>18:00</option>
-                <option>19:00</option>
-                <option>20:00</option>
-                <option>21:00</option>
-            </select>到
-            <select>
-                <option>9:00</option>
-                <option>10:00</option>
-                <option>11:00</option>
-                <option>12:00</option>
-                <option>13:00</option>
-                <option>14:00</option>
-                <option>15:00</option>
-                <option>16:00</option>
-                <option>17:00</option>
-                <option>18:00</option>
-                <option>19:00</option>
-                <option>20:00</option>
-                <option>21:00</option>
-                <option>22:00</option>
-            </select>
-            座位号：<input id="Snumber" style="width: 100px;margin:0px 20px;"></input>
-            <button>预约</button>
-        </div>
-        <div class="workplace">
-            <b>查询区域:</b>
-            <select id="area">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
-            </select> 区
-            <select id="floor">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select> 楼
-            <button id="button-search" style="position: relative; left: 120px;">查询</button>
-            <!--预约状态显示区域-->
-            <div style="margin-top:24px;">
-                <table id="seats"></table>
-            </div>
-        </div>
+  <div id="header"></div>
+  <br /><br />
+  <div class="content" style ="background-color: rgba(240,248,255,0.7)">
+    <ul>
+      <il class="il-link active" onclick="newtab(id)" id="0">个人座位预约</il>
+      <il class="il-link" onclick="newtab(id)" id="1">加入学习小组</il>
+    </ul>
+    <hr />
+    <div id="nMfOyStPrXdWcNfH" style="display:block" class="AseFeeds">
+      <div class="options">
+        <b>预约时段:</b> 从
+        <select class="form-control">
+          <option>8:00</option>
+          <option>9:00</option>
+          <option>10:00</option>
+          <option>11:00</option>
+          <option>12:00</option>
+          <option>13:00</option>
+          <option>14:00</option>
+          <option>15:00</option>
+          <option>16:00</option>
+          <option>17:00</option>
+          <option>18:00</option>
+          <option>19:00</option>
+          <option>20:00</option>
+          <option>21:00</option>
+        </select>到
+        <select class="form-control">
+          <option>9:00</option>
+          <option>10:00</option>
+          <option>11:00</option>
+          <option>12:00</option>
+          <option>13:00</option>
+          <option>14:00</option>
+          <option>15:00</option>
+          <option>16:00</option>
+          <option>17:00</option>
+          <option>18:00</option>
+          <option>19:00</option>
+          <option>20:00</option>
+          <option>21:00</option>
+          <option>22:00</option>
+        </select><br /><br />
+        <b>预约地点:</b>
+        <select class="form-control">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+          <option>D</option>
+        </select> 区
+        <select class="form-control">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select> 楼<br /><br />
+      </div>
+      <div class="workplace">
+        查询时段：<select class="form-control">
+          <option>8:00-9:00</option>
+          <option>9:00-10:00</option>
+          <option>10:00-11:00</option>
+          <option>11:00-12:00</option>
+          <option>12:00-13:00</option>
+          <option>13:00-14:00</option>
+          <option>14:00-15:00</option>
+          <option>15:00-16:00</option>
+          <option>16:00-17:00</option>
+          <option>17:00-18:00</option>
+          <option>18:00-19:00</option>
+          <option>19:00-20:00</option>
+          <option>20:00-21:00</option>
+          <option>21:00-22:00</option>
+        </select> <button class="btn btn-info">上一时段</button> <button class="btn btn-info">下一时段</button>
+        <!--预约状态显示区域-->
+      </div><br />
+      <button class="btn btn-primary" style="position: relative; left: 120px;">查询</button>
+      <button class="btn btn-primary" style="position: relative; left: 320px;">预约</button>
+    </div>
+    <div id="ePvFrNcCkWqOsRrW" style="display:none" class="AseFeeds">
+      <div class="options"><b>相关功能规划中</b></div>
+      <div class="workplace">
+        <p>敬请期待！</p>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
