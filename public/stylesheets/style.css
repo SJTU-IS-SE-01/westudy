@@ -1,8 +1,27 @@
 body {
-  background: url(../images/background-image1.jpg) no-repeat;
-  background-size: 100%;
+  background: #000 url(../images/background.png) no-repeat center 0px fixed;
 }
+
 
 .WeStudy {
   color: brown;
+}
+
+#header {
+  opacity: 0.8;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  /* border-radius: 20%; */
+}
+
+.content {
+  opacity: 0.9;
+}
+
+.form-control {
+  width: auto !important;
+  display: inline !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }
