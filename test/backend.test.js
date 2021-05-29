@@ -101,7 +101,7 @@ describe('TEST API', () => {
   });
 
   // 查询学生信息
-  //测试改进
+  // 测试改进
   // 更加便捷
   it('/students/query', (done) => {
     request
@@ -118,7 +118,7 @@ describe('TEST API', () => {
         return done();
       });
   });
-  
+
   after((done) => {
     pool.exitHelper.end(done);
   });

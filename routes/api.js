@@ -102,11 +102,11 @@ router.get('/timechack/:student/:Eapt', (req, res, next) => {
       results: {},
     });
   } else {
-    pool.query('SELECT Snum FROM Seat WHERE Snum NOT IN (SELECT Snum FROM SeatStatus WHERE  unix_timestamp(Btime)<=unix_timestamp(?) AND unix_timestamp(Etime)>=unix_timestamp(?))  ', 
-    [req.params.Etime, req.params.Btime], (error, results, fields) => {
-      const json = handleSQLResult(error, results, fields);
-      res.json(json);
-    });
+    pool.query('SELECT Snum FROM Seat WHERE Snum NOT IN (SELECT Snum FROM SeatStatus WHERE  unix_timestamp(Btime)<=unix_timestamp(?) AND unix_timestamp(Etime)>=unix_timestamp(?))  ',
+      [req.params.Etime, req.params.Btime], (error, results, fields) => {
+        const json = handleSQLResult(error, results, fields);
+        res.json(json);
+      });
   }
 });
 
