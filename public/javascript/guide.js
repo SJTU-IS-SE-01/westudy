@@ -1,4 +1,3 @@
-
 function newtab(id) {
   if (id === '0') {
     document.getElementById('0').className = 'active';
