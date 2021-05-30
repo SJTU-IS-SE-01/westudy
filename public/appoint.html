@@ -17,6 +17,7 @@
     <div class="content">
         <div class="options">
             <h1 style="margin: 10px;"><b>预 约 中 心</b></h1>
+<<<<<<< HEAD
             <p><b>预约时段:</b></p>
             <p style="color: #0088ff;"> 从
                 <select id="begin">
@@ -31,6 +32,17 @@
             <p><b>预约功能使用须知：</b></p>
             <p>1、预约之前需要先查询相关的座位信息</p>
             <p>2、每日可预约当日的空闲座位，22:00之后将开放次日的座位预约</p>
+=======
+            <b>预约时段:</b> 从
+            <select id="begin">
+            </select> 到
+            <select id="end">
+            </select><br />
+            <b>座位号：</b><select id="Snumber" style="margin:10px;">
+                <option value="0">请先查询座位预约信息</option>
+            </select><br />
+            <button id="button-post">预约</button>
+>>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
         </div>
         <div class="researcher">
             <div class="workplace">
@@ -47,11 +59,24 @@
                     <option>3</option>
                     <option>4</option>
                 </select> 楼
+<<<<<<< HEAD
                 <button id="button-search">按区域查询</button>
                 <button id="button-search1" style="margin-left:50px;">按左侧时间段查找</button>
                 <br /><br />
                 <!--预约状态显示区域-->
                 <table id="table-header"></table>
+=======
+                <button id="button-search">查询</button>
+                <br /><br />
+                <!--预约状态显示区域-->
+                <table>
+                    <tr>
+                        <td style="width: 95px;">座位号</td>
+                        <td style="width: 24px;">/</td>
+                        <td style="width: 545px;">已占用时间</td>
+                    </tr>
+                </table>
+>>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
                 <div class="results">
                     <table id="seats"></table>
                 </div>
