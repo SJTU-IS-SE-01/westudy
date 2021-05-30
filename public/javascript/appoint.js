@@ -1,14 +1,16 @@
+const { $ } = window;
+
 $(document).ready(() => {
   const n = new Date();
   console.log(n.getHours());
   if (n.getHours() < 21) {
-    for (let k = n.getHours() + 1; k < 22; k++) {
+    for (let k = n.getHours() + 1; k < 22; k += 1) {
       if (k < 8) break;
       $('#begin').html((x, origText) => `${origText}<option>${k}:00</option>`);
       $('#end').html((x, origText) => `${origText}<option>${k}:59</option>`);
     }
   } else {
-    for (let k = 8; k < 22; k++) {
+    for (let k = 8; k < 22; k += 1) {
       $('#begin').html((x, origText) => `${origText}<option value='${k}:00'>次日${k}:00</option>`);
       $('#end').html((x, origText) => `${origText}<option value='${k + 1}:00'>次日${k}:59</option>`);
     }
@@ -25,13 +27,13 @@ $(document).ready(() => {
       if (data.results.length) {
         $('#Snumber').html('');
         $('#seats').html('');
-        for (let i = 0; i < data.results.length; i++) {
+        for (let i = 0; i < data.results.length; i += 1) {
           const snumber = data.results[i].Snum;
           $.get(`/api/students/seatsapt?Snum=${snumber}`, (data_c) => {
             console.log(data_c);
             let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td><td>/</td>`;
             $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
-            for (let j = 0; j < data_c.results.length; j++) {
+            for (let j = 0; j < data_c.results.length; j += 1) {
               const b = data_c.results[j].Btime;
               if (parseInt(b.slice(0, 4)) * 10000 + parseInt(b.slice(5, 7)) * 100 + parseInt(b.slice(8, 10)) == 20210100 + n.getMonth() * 100 + parseInt(n.getDate())) {
                 str += `<td>${data_c.results[j].Btime.slice(11, 16)}--${data_c.results[j].Etime.slice(11, 16)}</td>`;
@@ -56,7 +58,7 @@ $(document).ready(() => {
       if (dataA.results.length) {
         $('#Snumber').html('');
         $('#seats').html('');
-        for (let i = 0; i < dataA.results.length; i++) {
+        for (let i = 0; i < dataA.results.length; i += 1) {
           if (dataA.results[i].Snum != '001') {
             $('#seats').html((x, origText) => `${origText}<td>${dataA.results[i].Snum}</td>`);
             $('#Snumber').html((x, origText) => `${origText}<option>${dataA.results[i].Snum}</option>`);
