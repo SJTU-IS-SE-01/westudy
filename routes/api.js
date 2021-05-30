@@ -5,7 +5,7 @@ const pool = require('./mysql');
 const router = express.Router();
 
 function handleDate(old) {
-  var date = new Date(old).toJSON();
+  const date = new Date(old).toJSON();
   return new Date(+new Date(date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
 }
 
@@ -83,7 +83,7 @@ router.get('/students/seatsapt', (req, res, next) => {
       res.json(json);
       return;
     }
-    for (let i in json.results) {
+    for (let i = 0; i < json.results.length; i += 1) {
       json.results[i].Btime = handleDate(json.results[i].Btime);
       json.results[i].Etime = handleDate(json.results[i].Etime);
     }
