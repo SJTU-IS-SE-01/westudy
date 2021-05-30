@@ -4,6 +4,11 @@ const pool = require('./mysql');
 
 const router = express.Router();
 
+function handleDate(old) {
+  var date = new Date(old).toJSON();
+  return new Date(+new Date(date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
+}
+
 function handleSQLResult(error, results, fields) {
   const json = {
     status: 0,
@@ -73,7 +78,16 @@ router.post('/students/addappointment', (req, res, next) => {
 // 查询某个座位所有的预约信息 seatsapt=座位预约
 router.get('/students/seatsapt', (req, res, next) => {
   pool.query('SELECT Btime,Etime,Snum,Id from SeatStatus WHERE ?', req.query, (error, results, fields) => {
-    res.json(handleSQLResult(error, results, fields));
+    const json = handleSQLResult(error, results, fields);
+    if (error) {
+      res.json(json);
+      return;
+    }
+    for (let i in json.results) {
+      json.results[i].Btime = handleDate(json.results[i].Btime);
+      json.results[i].Etime = handleDate(json.results[i].Etime);
+    }
+    res.json(json);
   });
 });
 
