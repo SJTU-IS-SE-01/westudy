@@ -7,12 +7,12 @@ $(document).ready(() => {
     for (let k = n.getHours() + 1; k < 22; k += 1) {
       if (k < 8) break;
       $('#begin').html((x, origText) => `${origText}<option>${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option>${k}:59</option>`);
+      $('#end').html((x, origText) => `${origText}<option>${k}:00</option>`);
     }
   } else {
     for (let k = 8; k < 22; k += 1) {
       $('#begin').html((x, origText) => `${origText}<option value='${k}:00'>次日${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option value='${k + 1}:59'>次日${k}:59</option>`);
+      $('#end').html((x, origText) => `${origText}<option value='${k + 1}:00'>次日${k + 1}:00</option>`);
     }
     n.setDate(n.getDate() + 1);
   }
@@ -20,18 +20,22 @@ $(document).ready(() => {
   $('#button-search').click(() => {
     const area = $('#area').val();
     const floor = $('#floor').val();
-    $('#table-header').html('<tr><td>座位号</td><td style="width:420px;">已占用时间</td></tr>');
     $.get(`/api/seats/query?Area=${area}&Floor=${floor}`, (data) => {
       console.log(data);
 
       if (data.results.length) {
         $('#Snumber').html('');
-        $('#seats').html('');
+        $('#table-header').html(`<colgroup><col width="20%"></col><col width="80%"></col></colgroup>
+        <tr><td>座位号</td><td>已占用的时间段</td></tr>`);
+        $('#seats').html(`<colgroup><col width="20%"></col>
+        <col width="20%"></col><col width="20%"></col><col width="20%"></col><col width="20%"></col>
+        <col width="20%"></col><col width="20%"></col><col width="20%"></col><col width="20%"></col>
+        </colgroup>`);
         for (let i = 0; i < data.results.length; i += 1) {
           const snumber = data.results[i].Snum;
           $.get(`/api/students/seatsapt?Snum=${snumber}`, (dataC) => {
             console.log(dataC);
-            let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td><td>/</td>`;
+            let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td>`;
             $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
             for (let j = 0; j < dataC.results.length; j += 1) {
               const b = dataC.results[j].Btime;
@@ -52,24 +56,23 @@ $(document).ready(() => {
   });
 
   $('#button-search1').click(() => {
+    $('#table-header').html('<tr><td width=100%>该时段的空闲座位</td></tr>');
     const begin = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#begin').val()}:00`;
     const end = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#end').val()}:00`;
-    $('#table-header').html('<tr><td>空闲座位号如下</td></tr>');
     $.get(`/api/timecheck/${begin}/${end}`, (dataA) => {
       console.log(dataA);
 
       if (dataA.results.length) {
         $('#Snumber').html('');
-        $('#seats').html('');
+        $('#seats').html('<tr>');
         for (let i = 0; i < dataA.results.length; i += 1) {
           if (dataA.results[i].Snum !== '001') {
-            $('#seats').html((x, origText) => `${origText}<td>${dataA.results[i].Snum}</td>`);
+            $('#seats').html((x, origText) => `${origText}<td>&nbsp${dataA.results[i].Snum}&nbsp</td>`);
             $('#Snumber').html((x, origText) => `${origText}<option>${dataA.results[i].Snum}</option>`);
           }
         }
-      } else {
-        $('#seats').html('该时间段暂无可预约的座位！');
       }
+      $('#seats').html((x, origText) => `${origText}</tr>`);
     });
   });
 
@@ -109,7 +112,7 @@ $(document).ready(() => {
               if (data3.status) {
                 alert('预约失败');
               } else {
-                alert('预约成功！请到“我的预约”界面查看您的预约状态！');
+                alert('预约成功！请到签到界面查看您的预约状态！');
               }
             });
           });
