@@ -14,10 +14,11 @@ $(document).ready(() => {
     }
     n.setDate(n.getDate() + 1);
   }
+
   $('#button-search').click(() => {
     const area = $('#area').val();
     const floor = $('#floor').val();
-
+    $('#table-header').html('<tr><td style="width: 95px;">座位号</td><td style="width: 24px;">/</td><td style="width: 545px;">已占用时间</td></tr>');
     $.get(`/api/seats/query?Area=${area}&Floor=${floor}`, (data) => {
       console.log(data);
 
@@ -38,6 +39,28 @@ $(document).ready(() => {
             }
             $('#seats').html(`${str}</tr>`);
           });
+        }
+      } else {
+        $('#seats').html('该区域暂无可预约的座位！');
+      }
+    });
+  });
+
+  $('#button-search1').click(() => {
+    const begin = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#begin').val()}:00`;
+    const end = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#end').val()}:00`;
+    $('#table-header').html('<tr><td>空闲座位号如下</td></tr>');
+    $.get(`/api/timecheck/${begin}/${end}`, (dataA) => {
+      console.log(dataA);
+
+      if (dataA.results.length) {
+        $('#Snumber').html('');
+        $('#seats').html('');
+        for (let i = 0; i < dataA.results.length; i++) {
+          if (dataA.results[i].Snum != '001') {
+            $('#seats').html((x, origText) => `${origText}<td>${dataA.results[i].Snum}</td>`);
+            $('#Snumber').html((x, origText) => `${origText}<option>${dataA.results[i].Snum}</option>`);
+          }
         }
       } else {
         $('#seats').html('该区域暂无可预约的座位！');
