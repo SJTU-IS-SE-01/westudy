@@ -12,7 +12,7 @@ $(document).ready(() => {
   } else {
     for (let k = 8; k < 22; k += 1) {
       $('#begin').html((x, origText) => `${origText}<option value='${k}:00'>次日${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option value='${k + 1}:00'>次日${k}:59</option>`);
+      $('#end').html((x, origText) => `${origText}<option value='${k + 1}:59'>次日${k}:59</option>`);
     }
     n.setDate(n.getDate() + 1);
   }
@@ -20,7 +20,7 @@ $(document).ready(() => {
   $('#button-search').click(() => {
     const area = $('#area').val();
     const floor = $('#floor').val();
-    $('#table-header').html('<tr><td>座位号</td><td>/</td><td>已占用时间</td></tr>');
+    $('#table-header').html('<tr><td>座位号</td><td style="width:420px;">已占用时间</td></tr>');
     $.get(`/api/seats/query?Area=${area}&Floor=${floor}`, (data) => {
       console.log(data);
 
@@ -29,14 +29,17 @@ $(document).ready(() => {
         $('#seats').html('');
         for (let i = 0; i < data.results.length; i += 1) {
           const snumber = data.results[i].Snum;
-          $.get(`/api/students/seatsapt?Snum=${snumber}`, (data_c) => {
-            console.log(data_c);
+          $.get(`/api/students/seatsapt?Snum=${snumber}`, (dataC) => {
+            console.log(dataC);
             let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td><td>/</td>`;
             $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
-            for (let j = 0; j < data_c.results.length; j += 1) {
-              const b = data_c.results[j].Btime;
-              if (parseInt(b.slice(0, 4)) * 10000 + parseInt(b.slice(5, 7)) * 100 + parseInt(b.slice(8, 10)) == 20210100 + n.getMonth() * 100 + parseInt(n.getDate())) {
-                str += `<td>${data_c.results[j].Btime.slice(11, 16)}--${data_c.results[j].Etime.slice(11, 16)}</td>`;
+            for (let j = 0; j < dataC.results.length; j += 1) {
+              const b = dataC.results[j].Btime;
+              const x = parseInt(b.slice(0, 4), 10) * 10000
+                + parseInt(b.slice(5, 7), 10) * 100 + parseInt(b.slice(8, 10), 10);
+              const y = 20210100 + n.getMonth() * 100 + n.getDate();
+              if (x === y) {
+                str += `<td>${dataC.results[j].Btime.slice(11, 16)}--${dataC.results[j].Etime.slice(11, 16)}</td>`;
               }
             }
             $('#seats').html(`${str}</tr>`);
@@ -59,26 +62,26 @@ $(document).ready(() => {
         $('#Snumber').html('');
         $('#seats').html('');
         for (let i = 0; i < dataA.results.length; i += 1) {
-          if (dataA.results[i].Snum != '001') {
+          if (dataA.results[i].Snum !== '001') {
             $('#seats').html((x, origText) => `${origText}<td>${dataA.results[i].Snum}</td>`);
             $('#Snumber').html((x, origText) => `${origText}<option>${dataA.results[i].Snum}</option>`);
           }
         }
       } else {
-        $('#seats').html('该区域暂无可预约的座位！');
+        $('#seats').html('该时间段暂无可预约的座位！');
       }
     });
   });
 
   $('#button-post').click(() => {
     const num = $('#Snumber').val();
-    if (num == 0) {
+    if (num === 0) {
       alert('请查询该区域的座位并选择座位号！');
-      return 1;
+      return;
     }
     if ($('#end').val() <= $('#begin').val()) {
       alert('请重新选择时间段！');
-      return 1;
+      return;
     }
     const Btime = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#begin').val()}:00`;
     const Etime = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#end').val()}:00`;
@@ -92,7 +95,7 @@ $(document).ready(() => {
       $.get('/users/getEmail', (data1) => {
         console.log(data1);
         const { email } = data1.results;
-        if (email == undefined) {
+        if (email === undefined) {
           alert('请先登录！');
         } else {
           $.get(`/api/students/query?email=${email}`, (data2) => {
