@@ -25,7 +25,10 @@ class Header {
       if (data.status === 0) {
         $('#login').hide();
         $('#signup').hide();
-        $('#users-email').html(`<a href="/personal.html">${data.results.email}</a>，欢迎您！`);
+        const { email } = data.results;
+        $.get(`/api/students/query?email=${email}`, (data2) => {
+          $('#users-email').html(`欢迎您，<a href="/personal.html">${data2.results[0].Name}</a>！`);
+        });
       }
     });
   }
