@@ -4,6 +4,11 @@ const pool = require('./mysql');
 
 const router = express.Router();
 
+function handleDate(old) {
+  const date = new Date(old).toJSON();
+  return new Date(+new Date(date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
+}
+
 function handleSQLResult(error, results, fields) {
   const json = {
     status: 0,
@@ -57,7 +62,7 @@ router.get('/students/query', (req, res, next) => {
 
 // 修改学生的信誉积分
 router.post('/students/quary', (req, res, next) => {
-  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.body.Id, (error, results, fields) => {
+  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.query.Id, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
@@ -73,7 +78,16 @@ router.post('/students/addappointment', (req, res, next) => {
 // 查询某个座位所有的预约信息 seatsapt=座位预约
 router.get('/students/seatsapt', (req, res, next) => {
   pool.query('SELECT Btime,Etime,Snum,Id from SeatStatus WHERE ?', req.query, (error, results, fields) => {
-    res.json(handleSQLResult(error, results, fields));
+    const json = handleSQLResult(error, results, fields);
+    if (error) {
+      res.json(json);
+      return;
+    }
+    for (let i = 0; i < json.results.length; i += 1) {
+      json.results[i].Btime = handleDate(json.results[i].Btime);
+      json.results[i].Etime = handleDate(json.results[i].Etime);
+    }
+    res.json(json);
   });
 });
 
@@ -91,6 +105,12 @@ router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
       res.json(json);
     });
   }
+});
+
+router.get('/seats/quary', (req, res, next) => {
+  pool.query('SELECT * FROM Seat WHERE Snum=?', req.query.Snum, (error, results, fields) => {
+    res.json(handleSQLResult(error, results, fields));
+  });
 });
 
 module.exports = router;
