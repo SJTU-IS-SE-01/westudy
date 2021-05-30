@@ -18,7 +18,7 @@ $(document).ready(() => {
   $('#button-search').click(() => {
     const area = $('#area').val();
     const floor = $('#floor').val();
-    $('#table-header').html('<tr><td style="width: 95px;">座位号</td><td style="width: 24px;">/</td><td style="width: 545px;">已占用时间</td></tr>');
+    $('#table-header').html('<tr><td>座位号</td><td>/</td><td>已占用时间</td></tr>');
     $.get(`/api/seats/query?Area=${area}&Floor=${floor}`, (data) => {
       console.log(data);
 
@@ -29,7 +29,7 @@ $(document).ready(() => {
           const snumber = data.results[i].Snum;
           $.get(`/api/students/seatsapt?Snum=${snumber}`, (data_c) => {
             console.log(data_c);
-            let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}号座位</td><td>/</td>`;
+            let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td><td>/</td>`;
             $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
             for (let j = 0; j < data_c.results.length; j++) {
               const b = data_c.results[j].Btime;
