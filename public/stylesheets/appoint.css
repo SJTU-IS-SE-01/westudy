@@ -1,29 +1,29 @@
 table, th, td {
     background-color: #ffffff;
-<<<<<<< HEAD
     border: 1px solid #0088ff;
     border-collapse: collapse;
     min-width: 24px;
     text-align: center;
-    color:#0088ff;
+    color: #0088ff;
 }
 
-button{
-    color:#ffffff;
-    background-color:#0088ff;
+button {
+    color: #ffffff;
+    background-color: #0088ff;
     border: #0088ff;
     border-radius: 3px;
 }
 
-button:hover{
-    background-color:#2299ff;
-}
-button:active{
-    background-color:#0066aa;
-    box-shadow: 0 0 0 .2rem rgba(34,153,255,.5);
-}
+    button:hover {
+        background-color: #2299ff;
+    }
 
-select{
+    button:active {
+        background-color: #0066aa;
+        box-shadow: 0 0 0 .2rem rgba(34,153,255,.5);
+    }
+
+select {
     border: 1px solid #0088ff;
     color: #0088ff;
     background-color: rgba(255,255,255,.5);
@@ -44,67 +44,26 @@ div.content {
         float: left;
     }
 
-    div.content > div.researcher{
+    div.content > div.researcher {
         display: inline;
         width: 560px;
         max-width: 100%;
         float: right;
     }
 
-    div.content > div.researcher >div.workplace {
-        background-color: #dddddd;
-        border: 2px;
-        border-radius: 10px;
-        padding: 25px;
-        width: 560px;
-        max-width: 100%;
-        height: 450px;
-    }
+        div.content > div.researcher > div.workplace {
+            background-color: #dddddd;
+            border: 2px;
+            border-radius: 10px;
+            padding: 25px;
+            width: 560px;
+            max-width: 100%;
+            height: 450px;
+        }
 
-=======
-    border: 1px solid #000000;
-    border-collapse: collapse;
-    min-width: 24px;
-    text-align: center;
-}
-
-div.content {
-    background-color: #ffffff;
-    border-radius: 30px;
-    margin: 12px 12%;
-    padding: 24px;
-    display: block;
-    min-height: 480px;
-}
-
-    div.content > div.options {
-        display: inline;
-        width: 320px;
-        float: left;
-    }
-
-    div.content > div.researcher{
-        display: inline;
-        width: 720px;
-        max-width: 100%;
-        float: right;
-    }
-
-    div.content > div.researcher >div.workplace {
-        background-color: #dddddd;
-        border: 2px;
-        border-radius: 10px;
-        padding: 25px;
-        width: 720px;
-        max-width: 100%;
-        height: 450px;
-    }
-
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
-        div.content >div.researcher > div.workplace>div.results {
-            height: auto;
-            overflow: scroll;
-            height: 320px;
-            background-color: #ffffff;
-}
-  
+            div.content > div.researcher > div.workplace > div.results {
+                height: auto;
+                overflow: scroll;
+                height: 320px;
+                background-color: #ffffff;
+            }

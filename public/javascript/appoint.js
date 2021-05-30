@@ -1,23 +1,15 @@
-<<<<<<< HEAD
 const { $ } = window;
 
-=======
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
 $(document).ready(() => {
   const n = new Date();
   console.log(n.getHours());
   if (n.getHours() < 21) {
-<<<<<<< HEAD
     for (let k = n.getHours() + 1; k < 22; k += 1) {
-=======
-    for (let k = n.getHours() + 1; k < 22; k++) {
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
       if (k < 8) break;
       $('#begin').html((x, origText) => `${origText}<option>${k}:00</option>`);
       $('#end').html((x, origText) => `${origText}<option>${k}:59</option>`);
     }
   } else {
-<<<<<<< HEAD
     for (let k = 8; k < 22; k += 1) {
       $('#begin').html((x, origText) => `${origText}<option value='${k}:00'>次日${k}:00</option>`);
       $('#end').html((x, origText) => `${origText}<option value='${k + 1}:59'>次日${k}:59</option>`);
@@ -29,25 +21,12 @@ $(document).ready(() => {
     const area = $('#area').val();
     const floor = $('#floor').val();
     $('#table-header').html('<tr><td>座位号</td><td style="width:420px;">已占用时间</td></tr>');
-=======
-    for (let k = 8; k < 22; k++) {
-      $('#begin').html((x, origText) => `${origText}<option value='${k}:00'>次日${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option value='${k + 1}:00'>次日${k + 1}:00</option>`);
-    }
-    n.setDate(n.getDate() + 1);
-  }
-  $('#button-search').click(() => {
-    const area = $('#area').val();
-    const floor = $('#floor').val();
-
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
     $.get(`/api/seats/query?Area=${area}&Floor=${floor}`, (data) => {
       console.log(data);
 
       if (data.results.length) {
         $('#Snumber').html('');
         $('#seats').html('');
-<<<<<<< HEAD
         for (let i = 0; i < data.results.length; i += 1) {
           const snumber = data.results[i].Snum;
           $.get(`/api/students/seatsapt?Snum=${snumber}`, (dataC) => {
@@ -61,18 +40,6 @@ $(document).ready(() => {
               const y = 20210100 + n.getMonth() * 100 + n.getDate();
               if (x === y) {
                 str += `<td>${dataC.results[j].Btime.slice(11, 16)}--${dataC.results[j].Etime.slice(11, 16)}</td>`;
-=======
-        for (let i = 0; i < data.results.length; i++) {
-          const snumber = data.results[i].Snum;
-          $.get(`/api/students/seatsapt?Snum=${snumber}`, (data_c) => {
-            console.log(data_c);
-            let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}号座位</td><td>/</td>`;
-            $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
-            for (let j = 0; j < data_c.results.length; j++) {
-              const b = data_c.results[j].Btime;
-              if (parseInt(b.slice(0, 4)) * 10000 + parseInt(b.slice(5, 7)) * 100 + parseInt(b.slice(8, 10)) == 20210100 + n.getMonth() * 100 + parseInt(n.getDate())) {
-                str += `<td>${data_c.results[j].Btime.slice(11, 16)}--${data_c.results[j].Etime.slice(11, 16)}</td>`;
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
               }
             }
             $('#seats').html(`${str}</tr>`);
@@ -84,7 +51,6 @@ $(document).ready(() => {
     });
   });
 
-<<<<<<< HEAD
   $('#button-search1').click(() => {
     const begin = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#begin').val()}:00`;
     const end = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#end').val()}:00`;
@@ -116,17 +82,6 @@ $(document).ready(() => {
     if ($('#end').val() <= $('#begin').val()) {
       alert('请重新选择时间段！');
       return;
-=======
-  $('#button-post').click(() => {
-    const num = $('#Snumber').val();
-    if (num == 0) {
-      alert('请查询该区域的座位并选择座位号！');
-      return 1;
-    }
-    if ($('#end').val() <= $('#begin').val()) {
-      alert('请重新选择时间段！');
-      return 1;
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
     }
     const Btime = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#begin').val()}:00`;
     const Etime = `${n.getFullYear()}-${n.getMonth() + 1}-${n.getDate()} ${$('#end').val()}:00`;
@@ -134,22 +89,13 @@ $(document).ready(() => {
     $.get(`/api/seatcheck/${num}/${Btime}/${Etime}`, (data0) => {
       console.log(data0);
       if (data0.results) {
-<<<<<<< HEAD
         alert('当前时段已被占用！');
         return;
-=======
-        alert("当前时段已被占用！");
-        return
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
       }
       $.get('/users/getEmail', (data1) => {
         console.log(data1);
         const { email } = data1.results;
-<<<<<<< HEAD
         if (email === undefined) {
-=======
-        if (email == undefined) {
->>>>>>> b27b57750eb60478fdf2d23b6128b44c325de9df
           alert('请先登录！');
         } else {
           $.get(`/api/students/query?email=${email}`, (data2) => {
