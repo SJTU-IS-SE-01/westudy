@@ -19,6 +19,7 @@ td{
 }
 select {
     height: 36px;
+    max-width: 90px;
 }
 
 div.content {
@@ -37,23 +38,21 @@ div.content button {
 
     div.content > div.options {
         display: inline;
-        width: 400px;
+        width: 44%;
         float: left;
         margin: 24px;
     }
 
     div.content > div.researcher {
         display: inline;
-        width: 560px;
-        max-width: 100%;
+        width: 50%;
         float: right;
     }
 
         div.content > div.researcher > div.workplace {
             border-left: 2px solid #dddddd;
             padding: 25px;
-            width: 560px;
-            max-width: 100%;
+            width: 100%;
             max-height: 450px;
         }
 

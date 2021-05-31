@@ -22,13 +22,16 @@
             </select> 到
             <select class="form-control" id="end">
             </select><br />
-            <b>座位号:</b>
-            <select class="form-control" id="Snumber" style="margin:10px;">
+            <b>座位号：</b><select class="form-control" id="Snumber" style="margin:10px;">
                 <option value="0">请先查询座位预约信息</option>
-            </select>&nbsp<button class="btn btn-primary" id="button-post">预约</button>
-            <p><b>预约功能使用须知：</b></p>
-            <p>1、预约之前需要先查询相关的座位信息</p>
-            <p>2、每日可预约当日的空闲座位，22:00之后将开放次日的座位预约</p>
+            </select>
+            <button class="btn btn-primary" id="button-search1">按时间段查找</button>
+            <button class="btn btn-primary" id="button-post">预约</button><br />
+            <div style="width: 70%;margin: 5%;">
+                <p class="font-weight-light"><b>预约功能使用须知：</b><br />
+                <p class="font-weight-light">1、预约之前需要先查询相关的座位信息</p>
+                <p class="font-weight-light">2、每日可预约当日的空闲座位，22:00之后将开放次日的座位预约</p>
+            </div>
         </div>
         <div class="researcher">
             <div class="workplace">
@@ -44,12 +47,11 @@
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
-                </select> 楼<br /><br />
+                </select> 楼
                 <button class="btn btn-primary" id="button-search">按区域查询</button>
-                <button class="btn btn-primary" id="button-search1">按时间段查找</button>
-                <br />
+                <br /><br />
                 <!--预约状态显示区域-->
-                <table id="table-header"><tr><td>&nbsp</td></tr></table>
+                <table id="table-header"></table>
                 <div class="results">
                     <table id="seats"></table>
                 </div>

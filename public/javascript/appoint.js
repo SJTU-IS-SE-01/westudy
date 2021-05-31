@@ -7,7 +7,7 @@ $(document).ready(() => {
     for (let k = n.getHours() + 1; k < 22; k += 1) {
       if (k < 8) break;
       $('#begin').html((x, origText) => `${origText}<option>${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option>${k}:00</option>`);
+      $('#end').html((x, origText) => `${origText}<option>${k + 1}:00</option>`);
     }
   } else {
     for (let k = 8; k < 22; k += 1) {
@@ -25,17 +25,14 @@ $(document).ready(() => {
 
       if (data.results.length) {
         $('#Snumber').html('');
-        $('#table-header').html(`<colgroup><col width="20%"></col><col width="80%"></col></colgroup>
-        <tr><td>座位号</td><td>已占用的时间段</td></tr>`);
-        $('#seats').html(`<colgroup><col width="20%"></col>
-        <col width="20%"></col><col width="20%"></col><col width="20%"></col><col width="20%"></col>
-        <col width="20%"></col><col width="20%"></col><col width="20%"></col><col width="20%"></col>
-        </colgroup>`);
+        $('#table-header').html(`<tr><td>座位号</td><td colspan="4">已占用的时间段</td></tr>`);
+        $('#seats').html('');
         for (let i = 0; i < data.results.length; i += 1) {
           const snumber = data.results[i].Snum;
           $.get(`/api/students/seatsapt?Snum=${snumber}`, (dataC) => {
             console.log(dataC);
             let str = `${$('#seats').html()}<tr><td>${data.results[i].Snum}</td>`;
+            let amount = 0;
             $('#Snumber').html((x, origText) => `${origText}<option>${data.results[i].Snum}</option>`);
             for (let j = 0; j < dataC.results.length; j += 1) {
               const b = dataC.results[j].Btime;
@@ -44,7 +41,15 @@ $(document).ready(() => {
               const y = 20210100 + n.getMonth() * 100 + n.getDate();
               if (x === y) {
                 str += `<td>${dataC.results[j].Btime.slice(11, 16)}--${dataC.results[j].Etime.slice(11, 16)}</td>`;
+                amount += 1;
               }
+            }
+            switch (amount) {
+              case 0: str += '<td colspan="4">该座位今日空闲！</td>'; break;
+              case 1: str += '<td></td><td></td><td></td>'; break;
+              case 2: str += '<td></td><td></td>'; break;
+              case 3: str += '<td></td>'; break;
+              default: break;
             }
             $('#seats').html(`${str}</tr>`);
           });
