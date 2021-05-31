@@ -12,7 +12,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="icon" href="./icon.ico" />
-  
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css"
     integrity="sha256-R91pD48xW+oHbpJYGn5xR0Q7tMhH4xOrWn1QqMRINtA=" crossorigin="anonymous">
   <style>
@@ -45,21 +45,20 @@
       <h1 class="WeStudy">WeStudy</h1>
       <h2 class="h3 mb-3 font-weight-normal">登录</h2>
       <br>
-      <div style="max-width: 90%; margin: auto;">
+      <div style="max-width: 100%; margin: auto;">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" style="margin-bottom: 4px;" placeholder="邮箱" required
           autofocus>
         <label for="inputCode" class="sr-only">txtusercode</label>
         <div style="display:flex;">
-          <input type="text" id="inputCode" class="form-control" style="width: 74%;" placeholder="验证码" required>
+          <input type="text" id="inputCode" class="form-control" style="width: 76.5%;" placeholder="验证码" required>
           &nbsp;
+
           <button id="get-code" type="button" class="btn btn-light" style="font-size: 12px;">获取验证码</button>
         </div>
-        <br>
         <div class="d-flex justify-content-end">
-          <a href="/signup.html" style = "margin: auto;">注册</a>
+          <a href="/signup.html" style="margin: auto;">注册</a>
         </div>
-        <br>
         <button id="login" class="btn btn-lg btn-primary btn-block">登录</button>
       </div>
     </div>
