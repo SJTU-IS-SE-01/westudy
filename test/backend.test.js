@@ -42,7 +42,7 @@ describe('TEST API', () => {
   // 查询座位信息
   it('/seats/query', (done) => {
     request
-      .get('/api/seats/query?Snum=01301')
+      .get('/api/seats/quary?Snum=01301')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -75,7 +75,7 @@ describe('TEST API', () => {
   // 修改信誉积分
   it('/students/quary', (done) => {
     request
-      .post('/api/students/quary?Id=519021911114')
+      .post('/api/students/quary?Id=519021910614')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {

@@ -7,7 +7,8 @@
     "develop": "cross-env NODE_ENV=develop node ./bin/www",
     "fix": "eslint --fix --ext .js,.ts .",
     "test-syntax": "eslint . --ext .js,.ts",
-    "test-backend": "mocha",
+    "test-backend": "mocha ./test/backend.test.js",
+    "test-frontend": "mocha ./test/frontend.test.js",
     "test": "npm run test-syntax"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "mocha": "^8.4.0",
+    "puppeteer": "^9.1.1",
     "supertest": "^6.1.3"
   }
 }
