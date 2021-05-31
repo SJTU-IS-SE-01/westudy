@@ -1,31 +1,31 @@
 async function run() {
-  const {$} = window;
+  const { $ } = window;
   async function getInfo() {
-    return new Promise(resolve => {
-      $.get("/users/getInfo", (data) => {
+    return new Promise((resolve) => {
+      $.get('/users/getInfo', (data) => {
         resolve(data.results[0]);
       });
-    })
+    });
   }
   async function getAppointment(id) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       $.get(`/api/students/seatsapt?Id=${id}`, (data) => {
         resolve(data.results);
       });
-    })
+    });
   }
 
   async function getSeatInfo(snum) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       $.get(`/api/seats/quary?Snum=${snum}`, (data) => {
         resolve(data.results[0]);
       });
-    })
+    });
   }
 
   function handleDate(date) {
     let min = date.getMinutes().toString();
-    if (min.length < 2) min = '0' + min;
+    if (min.length < 2) min = `0${min}`;
     return `${date.getHours()}:${min}`;
   }
 
@@ -38,22 +38,22 @@ async function run() {
   }
 
   const info = await getInfo();
-  const {Id} = info;
+  const { Id } = info;
   const appointment = await getAppointment(Id);
-  let tmpHtml = "";
-  console.log(appointment)
+  let tmpHtml = '';
+  console.log(appointment);
   for (let i = 0; i < appointment.length; i += 1) {
     const seatInfo = await getSeatInfo(appointment[i].Snum);
     appointment[i].seatInfo = seatInfo;
     const Btime = new Date(appointment[i].Btime);
     const Etime = new Date(appointment[i].Etime);
-    let status = "";
+    let status = '';
     if (appointment[i].Seatcheck === 0) {
-      status = `<button class="btn btn-primary appoint-button" key="${i}">签到</button>`
+      status = `<button class="btn btn-primary appoint-button" key="${i}">签到</button>`;
     } else if (appointment[i].Seatcheck === 1) {
-      status = `<button class="btn btn-primary appoint-button" key="${i}">签退</button>`
+      status = `<button class="btn btn-primary appoint-button" key="${i}">签退</button>`;
     } else {
-      status = `<p>预约结束</p>`
+      status = '<p>预约结束</p>';
     }
     tmpHtml += `
 <tr>
@@ -65,21 +65,21 @@ async function run() {
   <td>${handleDate(Btime)} - ${handleDate(Etime)}</td>
   <td>${status}</td>
 </tr>
-`
+`;
   }
-  $("#tbody-content").html(tmpHtml);
+  $('#tbody-content').html(tmpHtml);
 
-  $(".appoint-button").click(async e=>{
-    let $this = $(e.target);
-    let key = $this.attr("key");
-    let text = $this.text();
-    if (text === "签到") {
-      let res = await checkIn();
+  $('.appoint-button').click(async (e) => {
+    const $this = $(e.target);
+    const key = $this.attr('key');
+    const text = $this.text();
+    if (text === '签到') {
+      const res = await checkIn();
       if (res === 0) {
-        $this.text("签退");
+        $this.text('签退');
       }
-    } else if (text === "签退") {
-      let res = await checkOut();
+    } else if (text === '签退') {
+      const res = await checkOut();
       if (res === 0) {
 
       }

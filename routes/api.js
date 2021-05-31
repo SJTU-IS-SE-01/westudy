@@ -1,7 +1,7 @@
 const express = require('express');
 const { query } = require('./mysql');
 const pool = require('./mysql');
-const {handleDate, handleSQLResult} = require('./utils');
+const { handleDate, handleSQLResult } = require('./utils');
 
 const router = express.Router();
 
