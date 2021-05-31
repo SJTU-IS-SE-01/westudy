@@ -1,29 +1,9 @@
 const express = require('express');
 const { query } = require('./mysql');
 const pool = require('./mysql');
+const {handleDate, handleSQLResult} = require('./utils');
 
 const router = express.Router();
-
-function handleDate(old) {
-  const date = new Date(old).toJSON();
-  return new Date(+new Date(date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
-}
-
-function handleSQLResult(error, results, fields) {
-  const json = {
-    status: 0,
-    msg: 'ok',
-    results: {},
-  };
-  if (error) {
-    json.status = 1;
-    json.msg = error;
-    console.error(error);
-  } else {
-    json.results = results;
-  }
-  return json;
-}
 
 // 查询某个楼层区域的座位信息
 router.get('/seats/query', (req, res, next) => {
@@ -69,7 +49,7 @@ router.post('/students/quary', (req, res, next) => {
 
 // 增加一条座位预约
 router.post('/students/addappointment', (req, res, next) => {
-  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum,Id) values(?,?,?,?) ',
+  pool.query('INSERT INTO SeatStatus(Btime,Etime,Snum,Id,Seatcheck) values(?,?,?,?,0) ',
     [req.body.Btime, req.body.Etime, req.body.Snum, req.body.Id], (error, results, fields) => {
       res.json(handleSQLResult(error, results, fields));
     });
@@ -77,7 +57,7 @@ router.post('/students/addappointment', (req, res, next) => {
 
 // 查询某个座位所有的预约信息 seatsapt=座位预约
 router.get('/students/seatsapt', (req, res, next) => {
-  pool.query('SELECT Btime,Etime,Snum,Id from SeatStatus WHERE ?', req.query, (error, results, fields) => {
+  pool.query('SELECT Btime,Etime,Snum,Id,Seatcheck from SeatStatus WHERE ?', req.query, (error, results, fields) => {
     const json = handleSQLResult(error, results, fields);
     if (error) {
       res.json(json);

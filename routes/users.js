@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const {handleDate, handleSQLResult} = require('./utils');
 
 const emailConfigPath = path.join(__dirname, 'email.json');
 const emailConfig = JSON.parse(fs.readFileSync(emailConfigPath));
@@ -159,6 +160,21 @@ router.get('/getEmail', (req, res, next) => {
       status: 0,
       msg: 'ok',
       results: { email: req.session.email },
+    });
+  } else {
+    res.json({
+      status: 1,
+      msg: 'err',
+      results: {},
+    });
+  }
+});
+
+router.get('/getInfo', (req, res, next) => {
+  if ('email' in req.session && req.session.email) {
+    const email = req.session.email;
+    pool.query('SELECT * from Student where Email=?', email, (error, results, fields) => {
+      res.json(handleSQLResult(error, results, fields));
     });
   } else {
     res.json({
