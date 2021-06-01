@@ -38,6 +38,10 @@ div.content>div.AseFeeds>div.workplace {
   padding: 25px;
 }
 
+td, th {
+  vertical-align: middle !important;
+}
+
 .AseFeeds > table {
   width: 100%;
   text-align: center;
