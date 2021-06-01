@@ -1,110 +1,68 @@
 <html>
 
 <head>
-  <link rel='dns-prefetch' href='./index.html' />
-  <title>WeStudy</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="./stylesheets/appoint.css">
-  <link rel="stylesheet" href="./stylesheets/style.css">
-  <link rel="icon" href="./icon.ico" />
-  
-  <script src="./javascript/appoint.js"></script>
+    <link rel='dns-prefetch' href='./index.html' />
+    <title>Appoint_WeStudy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/appoint.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="icon" href="./icon.ico" />
+
 </head>
 
 <body>
-  <div id="header"></div>
-  <br /><br />
-  <div class="content" style ="background-color: rgba(240,248,255,0.7)">
-    <ul>
-      <il class="il-link active" onclick="newtab(id)" id="0">个人座位预约</il>
-      <il class="il-link" onclick="newtab(id)" id="1">加入学习小组</il>
-    </ul>
-    <hr />
-    <div id="nMfOyStPrXdWcNfH" style="display:block" class="AseFeeds">
-      <div class="options">
-        <b>预约时段:</b> 从
-        <select class="form-control">
-          <option>8:00</option>
-          <option>9:00</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-        </select>到
-        <select class="form-control">
-          <option>9:00</option>
-          <option>10:00</option>
-          <option>11:00</option>
-          <option>12:00</option>
-          <option>13:00</option>
-          <option>14:00</option>
-          <option>15:00</option>
-          <option>16:00</option>
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-          <option>22:00</option>
-        </select><br /><br />
-        <b>预约地点:</b>
-        <select class="form-control">
-          <option>A</option>
-          <option>B</option>
-          <option>C</option>
-          <option>D</option>
-        </select> 区
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select> 楼<br /><br />
-      </div>
-      <div class="workplace">
-        查询时段：<select class="form-control">
-          <option>8:00-9:00</option>
-          <option>9:00-10:00</option>
-          <option>10:00-11:00</option>
-          <option>11:00-12:00</option>
-          <option>12:00-13:00</option>
-          <option>13:00-14:00</option>
-          <option>14:00-15:00</option>
-          <option>15:00-16:00</option>
-          <option>16:00-17:00</option>
-          <option>17:00-18:00</option>
-          <option>18:00-19:00</option>
-          <option>19:00-20:00</option>
-          <option>20:00-21:00</option>
-          <option>21:00-22:00</option>
-        </select> <button class="btn btn-info">上一时段</button> <button class="btn btn-info">下一时段</button>
-        <!--预约状态显示区域-->
-      </div><br />
-      <button class="btn btn-primary" style="position: relative; left: 120px;">查询</button>
-      <button class="btn btn-primary" style="position: relative; left: 320px;">预约</button>
+    <div id="header"></div>
+    <br /><br />
+    <div class="content">
+        <div class="options">
+            <h1 style="margin: 10px;"><b>预 约 中 心</b></h1>
+            <b>预约时段:</b> 从
+            <select class="form-control" id="begin">
+            </select> 到
+            <select class="form-control" id="end">
+            </select><br />
+            <b>座位号:</b>
+            <select class="form-control" id="Snumber" style="margin:10px;">
+                <option value="0">请先查询座位预约信息</option>
+            </select>&nbsp<button class="btn btn-primary" id="button-post">预约</button>
+            <p><b>预约功能使用须知：</b></p>
+            <p>1、预约之前需要先查询相关的座位信息</p>
+            <p>2、每日可预约当日的空闲座位，22:00之后将开放次日的座位预约</p>
+        </div>
+        <div class="researcher">
+            <div class="workplace">
+                <b>查询区域:</b>
+                <select class="form-control" id="area">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                </select> 区
+                <select class="form-control" id="floor">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select> 楼<br /><br />
+                <button class="btn btn-primary" id="button-search">按区域查询</button>
+                <button class="btn btn-primary" id="button-search1">按时间段查找</button>
+                <br />
+                <!--预约状态显示区域-->
+                <table id="table-header"><tr><td>&nbsp</td></tr></table>
+                <div class="results">
+                    <table id="seats"></table>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="ePvFrNcCkWqOsRrW" style="display:none" class="AseFeeds">
-      <div class="options"><b>相关功能规划中</b></div>
-      <div class="workplace">
-        <p>敬请期待！</p>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-  <script src="/javascript/index.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/javascript/index.js"></script>
+    <script src="./javascript/appoint.js"></script>
 </body>
 
 </html>
