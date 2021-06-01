@@ -25,7 +25,7 @@ $(document).ready(() => {
 
       if (data.results.length) {
         $('#Snumber').html('');
-        $('#table-header').html(`<tr><td width=20%>座位号</td><td width=80% colspan="4">已占用的时间段</td></tr>`);
+        $('#table-header').html('<tr><td width=20%>座位号</td><td width=80% colspan="4">已占用的时间段</td></tr>');
         $('#seats').html(`<colgroup><col width=20%><col width=20%><col width=20%>
         <col width=20%><col width=20%><col width=20%></colgroup>`);
         for (let i = 0; i < data.results.length; i += 1) {
@@ -48,8 +48,8 @@ $(document).ready(() => {
             switch (z) {
               case 0: str += '<td colspan="4">该座位今日空闲</td>'; break;
               case 1: str += '<td></td><td></td><td></td>'; break;
-              case 1: str += '<td></td><td></td>'; break;
-              case 2: str += '<td></td>'; break;
+              case 2: str += '<td></td><td></td>'; break;
+              case 3: str += '<td></td>'; break;
               default: break;
             }
             $('#seats').html(`${str}</tr>`);
