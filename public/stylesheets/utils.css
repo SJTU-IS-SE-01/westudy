@@ -37,3 +37,8 @@ div.content>div.AseFeeds>div.workplace {
   border-radius: 30px;
   padding: 25px;
 }
+
+.AseFeeds > table {
+  width: 100%;
+  text-align: center;
+}

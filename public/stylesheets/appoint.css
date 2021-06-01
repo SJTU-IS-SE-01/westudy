@@ -39,15 +39,14 @@ div.content button {
 
 div.content>div.options {
   display: inline;
-  width: 400px;
+  width: 380px;
   float: left;
   margin: 24px;
 }
 
 div.content>div.researcher {
   display: inline;
-  width: 560px;
-  max-width: 100%;
+  width: calc(100% - 450px);;
   float: right;
 }
 
