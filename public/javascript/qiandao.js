@@ -42,8 +42,9 @@ async function run() {
   const appointment = await getAppointment(Id);
   let tmpHtml = '';
   console.log(appointment);
+  const seatsInfo = await Promise.all(appointment.map((x) => getSeatInfo(x.Snum)));
   for (let i = 0; i < appointment.length; i += 1) {
-    const seatInfo = await getSeatInfo(appointment[i].Snum);
+    const seatInfo = seatsInfo[i];
     appointment[i].seatInfo = seatInfo;
     const Btime = new Date(appointment[i].Btime);
     const Etime = new Date(appointment[i].Etime);

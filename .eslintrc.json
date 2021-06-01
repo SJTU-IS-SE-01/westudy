@@ -17,7 +17,6 @@
         "no-var": "warn",
         "no-console": "off",
         "class-methods-use-this": "warn",
-        "no-await-in-loop": "warn",
         "no-empty": "warn"
     }
 }
