@@ -1,66 +1,66 @@
 table {
-    border-collapse: collapse;
-    text-align: center;
-    width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
 }
 
 tr {
-    /* position: absolute; */
-    border-bottom: 1px solid #dee2e6;
-    border-top: 1px solid #dee2e6;
-    height: 36px;
-    background: none;
+  /* position: absolute; */
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  height: 36px;
+  background: none;
 }
 
 td {
-    min-width: 24px;
-    background: none;
-    width: auto;
-    padding: 0 3px;
+  min-width: 24px;
+  background: none;
+  width: auto;
+  padding: 0 3px;
 }
 
 select {
-    height: 36px;
+  height: 36px;
 }
 
 div.content {
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 30px;
-    margin: 12px 12%;
-    padding: 24px;
-    display: block;
-    min-height: 480px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+  margin: 12px 12%;
+  padding: 24px;
+  display: block;
+  min-height: 480px;
 }
 
 div.content button {
-    margin-top: -5px;
-    height: 36px;
+  margin-top: -5px;
+  height: 36px;
 }
 
 div.content>div.options {
-    display: inline;
-    width: 400px;
-    float: left;
-    margin: 24px;
+  display: inline;
+  width: 400px;
+  float: left;
+  margin: 24px;
 }
 
 div.content>div.researcher {
-    display: inline;
-    width: 560px;
-    max-width: 100%;
-    float: right;
+  display: inline;
+  width: 560px;
+  max-width: 100%;
+  float: right;
 }
 
 div.content>div.researcher>div.workplace {
-    border-left: 2px solid #dddddd;
-    padding: 25px;
-    width: 560px;
-    max-width: 100%;
-    max-height: 450px;
+  border-left: 2px solid #dddddd;
+  padding: 25px;
+  width: 560px;
+  max-width: 100%;
+  max-height: 450px;
 }
 
 div.content>div.researcher>div.workplace>div.results {
-    height: auto;
-    overflow: auto;
-    height: 280px;
+  height: auto;
+  overflow: auto;
+  height: 280px;
 }
