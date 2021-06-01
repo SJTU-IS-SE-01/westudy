@@ -57,7 +57,7 @@ router.post('/students/addappointment', (req, res, next) => {
 
 // 查询某个座位所有的预约信息 seatsapt=座位预约
 router.get('/students/seatsapt', (req, res, next) => {
-  pool.query('SELECT Btime,Etime,Snum,Id,Seatcheck from SeatStatus WHERE ?', req.query, (error, results, fields) => {
+  pool.query('SELECT Btime,Etime,Snum,Id,Seatcheck from SeatStatus WHERE ? order by Btime desc', req.query, (error, results, fields) => {
     const json = handleSQLResult(error, results, fields);
     if (error) {
       res.json(json);
