@@ -63,3 +63,15 @@ div.content>div.researcher>div.workplace>div.results {
   overflow: auto;
   height: 280px;
 }
+
+#info {
+  /* font-family:'Courier New', Courier, monospace; */
+  font-size: 10px;
+  margin-top: 60px;
+  color: #666;
+}
+
+/* body > div.content > div.options > h1 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #666;
+} */
