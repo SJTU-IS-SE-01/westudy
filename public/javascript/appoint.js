@@ -7,7 +7,7 @@ $(document).ready(() => {
     for (let k = n.getHours() + 1; k < 22; k += 1) {
       if (k < 8) break;
       $('#begin').html((x, origText) => `${origText}<option>${k}:00</option>`);
-      $('#end').html((x, origText) => `${origText}<option>${k}:00</option>`);
+      $('#end').html((x, origText) => `${origText}<option>${k + 1}:00</option>`);
     }
   } else {
     for (let k = 8; k < 22; k += 1) {
