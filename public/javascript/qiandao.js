@@ -74,19 +74,15 @@ async function run() {
   let nowIndex = 0;
 
   function updatePage() {
-    if (nowIndex === 0)
-      $("#prev").parent().addClass("disabled");
-    else
-      $("#prev").parent().removeClass("disabled");
+    if (nowIndex === 0) $('#prev').parent().addClass('disabled');
+    else $('#prev').parent().removeClass('disabled');
 
-    if (nowIndex === maxIndex)
-      $("#next").parent().addClass("disabled");
-    else
-      $("#next").parent().removeClass("disabled");
+    if (nowIndex === maxIndex) $('#next').parent().addClass('disabled');
+    else $('#next').parent().removeClass('disabled');
 
-    let l = nowIndex * 5;
-    let r = l + 4;
-    for (var i = 0; i < appointment.length; i += 1) {
+    const l = nowIndex * 5;
+    const r = l + 4;
+    for (let i = 0; i < appointment.length; i += 1) {
       if (i >= l && i <= r) {
         $(`#appoint-${i}`).show();
       } else {
@@ -95,11 +91,11 @@ async function run() {
     }
   }
   updatePage();
-  $("#prev").click(e => {
+  $('#prev').click((e) => {
     nowIndex = Math.max(0, nowIndex - 1);
     updatePage();
   });
-  $("#next").click(e => {
+  $('#next').click((e) => {
     nowIndex = Math.min(maxIndex, nowIndex + 1);
     updatePage();
   });
