@@ -42,7 +42,7 @@ router.get('/students/query', (req, res, next) => {
 
 // 修改学生的信誉积分
 router.post('/students/quary', (req, res, next) => {
-  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.body.Id, (error, results, fields) => {
+  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.body, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
@@ -57,7 +57,7 @@ router.post('/students/addappointment', (req, res, next) => {
 
 // 查询某个座位所有的预约信息 seatsapt=座位预约
 router.get('/students/seatsapt', (req, res, next) => {
-  pool.query('SELECT Btime,Etime,Snum,Id,Seatcheck from SeatStatus WHERE ? order by Btime desc', req.query, (error, results, fields) => {
+  pool.query('SELECT Btime,Etime,Snum,Id,Seatcheck,Number from SeatStatus WHERE ? order by Btime desc', req.query, (error, results, fields) => {
     const json = handleSQLResult(error, results, fields);
     if (error) {
       res.json(json);
@@ -89,6 +89,18 @@ router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
 
 router.get('/seats/quary', (req, res, next) => {
   pool.query('SELECT * FROM Seat WHERE Snum=?', req.query.Snum, (error, results, fields) => {
+    res.json(handleSQLResult(error, results, fields));
+  });
+});
+
+router.post('/checkin', (req, res, next) => {
+  pool.query('UPDATE SeatStatus Set Seatcheck=1  WHERE ?', req.body, (error, results, fields) => {
+    res.json(handleSQLResult(error, results, fields));
+  });
+});
+
+router.post('/checkout', (req, res, next) => {
+  pool.query('UPDATE SeatStatus Set Seatcheck=2  WHERE ?', req.body, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
