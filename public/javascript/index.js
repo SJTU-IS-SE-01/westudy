@@ -37,4 +37,13 @@ class Header {
 window.$(document).ready(() => {
   const header = new Header();
   header.build();
+  window.alert = function (str, flag) {
+    const {toastr} = window;
+    toastr.options.positionClass = 'toast-top-center';
+    console.log(flag);
+    if (flag)
+      toastr.success(str);
+    else
+      toastr.warning(str);
+  }
 });
