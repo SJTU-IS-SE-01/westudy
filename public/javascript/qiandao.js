@@ -131,7 +131,11 @@ async function run() {
 
   $('.appoint-button').click(async (e) => {
     const $this = $(e.target);
-    if ($this.hasClass('disabled')) return;
+    if ($this.hasClass('disabled'))
+    {
+      alert("请确认签到位置");
+      return;
+    }
     const key = $this.attr('key');
     const text = $this.text();
     if (text === '签到') {
