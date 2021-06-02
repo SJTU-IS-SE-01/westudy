@@ -87,18 +87,21 @@ router.get('/timecheck/:Btime/:Etime', (req, res, next) => {
   }
 });
 
+// 获取座位信息
 router.get('/seats/quary', (req, res, next) => {
   pool.query('SELECT * FROM Seat WHERE Snum=?', req.query.Snum, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
 
+// 更改座位签到状态
 router.post('/checkin', (req, res, next) => {
   pool.query('UPDATE SeatStatus Set Seatcheck=1  WHERE ?', req.body, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
 
+// 更改座位签退状态
 router.post('/checkout', (req, res, next) => {
   pool.query('UPDATE SeatStatus Set Seatcheck=2  WHERE ?', req.body, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
