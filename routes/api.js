@@ -42,7 +42,7 @@ router.get('/students/query', (req, res, next) => {
 
 // 修改学生的信誉积分
 router.post('/students/quary', (req, res, next) => {
-  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.query.Id, (error, results, fields) => {
+  pool.query('UPDATE Student Set Credit=Credit-1  WHERE ?', req.body.Id, (error, results, fields) => {
     res.json(handleSQLResult(error, results, fields));
   });
 });
