@@ -118,7 +118,7 @@ $(document).ready(() => {
               if (data3.status) {
                 alert('预约失败');
               } else {
-                alert('预约成功！请到签到界面查看您的预约状态！');
+                alert('预约成功！请到签到界面查看您的预约状态！', true);
               }
             });
           });
