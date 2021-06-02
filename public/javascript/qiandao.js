@@ -100,8 +100,28 @@ async function run() {
     updatePage();
   });
 
+  async function updateGeolocation() {
+    const { Geolocation } = window;
+    $('#geo').text('获取中');
+    $('.appoint-button').addClass('disabled');
+    const geo = new Geolocation();
+    const res = await geo.tryToGet();
+    if (res === false) {
+      $('#geo').text('无法获取');
+      return;
+    }
+    if (geo.inLibrary()) {
+      $('#geo').text('在图书馆');
+      $('.appoint-button').removeClass('disabled');
+    } else $('#geo').text('不在图书馆');
+  }
+
+  updateGeolocation();
+  $('#regeo').click(updateGeolocation);
+
   $('.appoint-button').click(async (e) => {
     const $this = $(e.target);
+    if ($this.hasClass('disabled')) return;
     const key = $this.attr('key');
     const text = $this.text();
     if (text === '签到') {
