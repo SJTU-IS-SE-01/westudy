@@ -1,0 +1,7 @@
+#next, #prev {
+  cursor: pointer;
+}
+
+.table td, th {
+  padding: 8px !important;
+}

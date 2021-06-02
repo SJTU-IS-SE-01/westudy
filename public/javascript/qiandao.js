@@ -50,15 +50,15 @@ async function run() {
     const Etime = new Date(appointment[i].Etime);
     let status = '';
     if (appointment[i].Seatcheck === 0) {
-      status = `<button class="btn btn-primary appoint-button" key="${i}">签到</button>`;
+      status = `<button class="btn btn-sm btn-primary appoint-button" key="${i}">签到</button>`;
     } else if (appointment[i].Seatcheck === 1) {
-      status = `<button class="btn btn-primary appoint-button" key="${i}">签退</button>`;
+      status = `<button class="btn btn-sm btn-primary appoint-button" key="${i}">签退</button>`;
     } else {
       status = '<p>预约结束</p>';
     }
     tmpHtml += `
-<tr>
-  <th id="appoint-${i}" scope="row">${i + 1}</th>
+<tr id="appoint-${i}">
+  <th scope="row">${i + 1}</th>
   <td>${seatInfo.Floor}</td>
   <td>${seatInfo.Area}</td>
   <td>${seatInfo.Snum}</td>
@@ -69,6 +69,40 @@ async function run() {
 `;
   }
   $('#tbody-content').html(tmpHtml);
+
+  const maxIndex = Math.ceil(appointment.length / 5) - 1;
+  let nowIndex = 0;
+
+  function updatePage() {
+    if (nowIndex === 0)
+      $("#prev").parent().addClass("disabled");
+    else
+      $("#prev").parent().removeClass("disabled");
+
+    if (nowIndex === maxIndex)
+      $("#next").parent().addClass("disabled");
+    else
+      $("#next").parent().removeClass("disabled");
+
+    let l = nowIndex * 5;
+    let r = l + 4;
+    for (var i = 0; i < appointment.length; i += 1) {
+      if (i >= l && i <= r) {
+        $(`#appoint-${i}`).show();
+      } else {
+        $(`#appoint-${i}`).hide();
+      }
+    }
+  }
+  updatePage();
+  $("#prev").click(e => {
+    nowIndex = Math.max(0, nowIndex - 1);
+    updatePage();
+  });
+  $("#next").click(e => {
+    nowIndex = Math.min(maxIndex, nowIndex + 1);
+    updatePage();
+  });
 
   $('.appoint-button').click(async (e) => {
     const $this = $(e.target);

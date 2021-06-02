@@ -7,15 +7,18 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./stylesheets/utils.css">
   <link rel="stylesheet" href="./stylesheets/style.css">
+  <link rel="stylesheet" href="./stylesheets/qiandao.css">
   <link rel="icon" href="./icon.ico" />
 </head>
 
 <body>
   <div id="header"></div>
   <div 
-    style="max-width: 50%; margin: auto; position: relative; top: 100px; padding: 50px; background-color: rgba(240,248,255,0.7); border-radius:24px;">
-    <h2 style="text-align:center">我的预约</h2>
-    <p>预约信息查询</p>
+    style="max-width: 50%; margin: auto; position: relative; top: 50px; padding: 50px 50px 10px 50px; background-color: rgba(240,248,255,0.7); border-radius:24px;">
+    <h2>我的预约</h2>
+    <hr>
+    <div class="container d-flex justify-content-between">
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -31,6 +34,12 @@
       <tbody id="tbody-content">
       </tbody>
     </table>
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a id="prev" class="page-link">上一页</a></li>
+        <li class="page-item"><a id="next" class="page-link">下一页</a></li>
+      </ul>
+    </nav>
   </div>
   
 
