@@ -29,14 +29,6 @@ async function run() {
     return `${date.getHours()}:${min}`;
   }
 
-  async function checkIn() {
-    return 0;
-  }
-
-  async function checkOut() {
-    return 1;
-  }
-
   const info = await getInfo();
   const { Id } = info;
   const appointment = await getAppointment(Id);
@@ -54,7 +46,7 @@ async function run() {
     } else if (appointment[i].Seatcheck === 1) {
       status = `<button class="btn btn-sm btn-primary appoint-button" key="${i}">签退</button>`;
     } else {
-      status = '<p>预约结束</p>';
+      status = '预约结束';
     }
     tmpHtml += `
 <tr id="appoint-${i}">
@@ -119,20 +111,38 @@ async function run() {
   updateGeolocation();
   $('#regeo').click(updateGeolocation);
 
+  async function checkIn(key) {
+    const Num = appointment[key].Number;
+    return new Promise((resolve) => {
+      $.post('/api/checkin', { Number: Num }, (data) => {
+        resolve(data.status);
+      });
+    });
+  }
+
+  async function checkOut(key) {
+    const Num = appointment[key].Number;
+    return new Promise((resolve) => {
+      $.post('/api/checkout', { Number: Num }, (data) => {
+        resolve(data.status);
+      });
+    });
+  }
+
   $('.appoint-button').click(async (e) => {
     const $this = $(e.target);
     if ($this.hasClass('disabled')) return;
     const key = $this.attr('key');
     const text = $this.text();
     if (text === '签到') {
-      const res = await checkIn();
+      const res = await checkIn(key);
       if (res === 0) {
         $this.text('签退');
       }
     } else if (text === '签退') {
-      const res = await checkOut();
+      const res = await checkOut(key);
       if (res === 0) {
-
+        $this.parent().html('预约结束');
       }
     }
   });
