@@ -106,8 +106,8 @@ router.post('/signup', (req, res, next) => {
       });
       // 插入该用户
       pool.query(`
-        insert into Student(Id, Name, Major, Credit, Email, Password)
-          values (?, ?, ?, 100, ?, "123456")`,
+        insert into Student(Id, Name, Major, Credit, Email)
+          values (?, ?, ?, 100, ?)`,
       [Id, Name, Major, email]);
     });
   }
