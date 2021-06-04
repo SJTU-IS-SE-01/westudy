@@ -53,6 +53,11 @@ npm run test-syntax
 npm run test-backend
 ```
 
+- 前端测试
+```shell
+npm run test-frontend
+```
+
 
 ## 三、项目开发流程
 
