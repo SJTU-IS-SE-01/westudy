@@ -1,6 +1,7 @@
 const { $ } = window;
 
 $(document).ready(() => {
+  //alert('当前信誉积分较低，请补签后预约');
   const n = new Date();
   console.log(n.getHours());
   if (n.getHours() < 21) {

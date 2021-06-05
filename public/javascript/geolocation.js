@@ -22,7 +22,7 @@ class Geolocation {
     const dlat = 31.032331 - this.latitude;
     const dlon = 121.444041 - this.longitude;
     const d = dlat * dlat + dlon * dlon;
-    return d < 0.00015;
+    return d < 0.00005;
   }
 }
 window.Geolocation = Geolocation;
